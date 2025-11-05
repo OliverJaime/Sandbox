@@ -1,0 +1,52 @@
+---
+interface Props {
+  photo: string;
+  street: string;
+  suite: string;
+  citystatezip: string;
+  hours: Hours[];
+  website: string;
+  websiteurl: string;
+  gmapsembed: string;
+  entranceinfo: string;
+  phone: string;
+}
+
+export interface Hours {
+  day: string;
+  time: string;
+}
+
+const props = Astro.props;
+const completeEmbedURL = "https://www.google.com/maps/embed?pb=" + props.gmapsembed;
+---
+
+<div id="location" class="bg-brand-text text-brand-secondary py-10">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mb-6 md:mb-10">
+      <img src={props.photo} alt="RPT Clinic Building Troy MI" class="" />
+      <div class="">
+        <p class="">{props.street}</p>
+        <p class="">{props.suite}</p>
+        <p class="">{props.citystatezip}</p>
+        <p class="">{props.entranceinfo}</p>
+        <div class="py-6">
+        {
+          props.hours.map((hours, index) => {
+            return (
+              <div class="flex">
+                <p class="">{hours.day}:&nbsp;</p>
+                <p class="">{hours.time}</p>
+              </div>
+            );
+          })
+        }
+        </div>
+        <p class=""><a href="tel:+12487442978">{props.phone}</a></p>
+        <a href={props.websiteurl} target="_blank" class="underline">{props.website}</a>
+      </div>
+    </div>
+
+    <iframe src={completeEmbedURL} title="RPT Clinic Location Oakland County MI" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>

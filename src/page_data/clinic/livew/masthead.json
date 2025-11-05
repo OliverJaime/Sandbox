@@ -1,0 +1,22 @@
+
+{
+  "logo": "/img/default-clinic-logo.svg",
+  "mobileLogo": "/img/footer-logo.svg",
+  "star": "/img/one-star.png",
+  "contact": "(248) 744-2978",
+  "headline": "Sciatica Pain Relief",
+  "subhead": "Pain Resolution 4 to 6 Sessions*<br /> No surgery. No Meds. No Injections.",
+  "cta": "Submit Contact Info",
+  "ctaurl": "#ctm-form-section",
+  "ctabuttonclass": "call-to-action hidden md:block",
+  "ctabuttonclassMobile": "call-to-action md:hidden items-center text-base",
+  "pillicon": "/img/icon-nopills.png",
+  "needleicon": "/img/icon-noneedle.png",
+  "surgeryicon": "/img/icon-nosurgery.png",
+
+  "carouselImages": [
+    "/img/carousel/Dayne.jpg",
+    "/img/carousel/header-2.jpg",
+    "/img/carousel/mastheadGradient2-bg.png"
+  ]
+}

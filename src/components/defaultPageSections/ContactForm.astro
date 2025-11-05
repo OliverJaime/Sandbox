@@ -1,0 +1,18 @@
+---
+interface Props {
+  headline: string;
+  formsrc: string;
+  backgroundclass: string;
+}
+
+const props = Astro.props;
+---
+
+<!-- CTM Form Section -->
+<div id="ctm-form-section" class={props.backgroundclass}>
+  <div id="contact" class="container max-w-3xl">
+    <h1 class="section-headline-form mb-8 max-w-2xl mx-auto" set:html={props.headline}></h1>
+    <iframe class="ctm-call-widget" src={props.formsrc} style="width: 100%; min-height: 42rem; height: 100%; border: none;"></iframe>
+    <script defer async src="https://569220.tctm.co/formreactor.js"></script>
+  </div>
+</div>

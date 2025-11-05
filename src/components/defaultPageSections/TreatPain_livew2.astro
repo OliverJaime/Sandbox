@@ -1,0 +1,183 @@
+---
+interface Props {
+  headlineMain: string;
+  subMain: string;
+  headline: string;
+  overview: string;
+  backgroundclass: string;
+  pillicon: string;
+  needleicon: string;
+  surgeryicon: string;
+}
+
+const props = Astro.props;
+---
+
+<div class={props.backgroundclass}>
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmContent = urlParams.get('utm_content');
+
+      const headlineElement = document.getElementById('dynamic-keyword');
+      const headlineElement2 = document.getElementById('dynamic-subMain');    
+
+      // Set the headline text if utm_content matches one of the keys in headlines
+      if (utmContent === 'sciatica') {
+        headlineElement.textContent = 'Sciatica Pain';
+        headlineElement2.textContent = 'The Easiest, Most Comfortable Way To Resolve Your Sciatica Pain';
+        
+      }
+
+      // if (utmContent === 'lower_back') {
+      //   headlineElement.textContent = 'Lower Back Pain';
+      //   headlineElement2.textContent = 'The Easiest, Most Comfortable Way To Resolve Your Lower Back Pain';
+      // }
+
+      // if (utmContent === 'herniated_disc') {
+      //   headlineElement.textContent = 'Herniated Disc';
+      //   headlineElement2.textContent = 'The Easiest, Most Comfortable Way To Resolve Your Herniated Disc';
+      // }
+
+      // if (utmContent === 'bulging_disc') {
+      //   headlineElement.textContent = 'Bulging Disc';
+      //   headlineElement2.textContent = 'The Easiest, Most Comfortable Way To Resolve Your Bulging Disc';
+      // }
+
+      // if (utmContent === 'piriformis') {
+      //   headlineElement.textContent = 'Piriformis Pain';
+      //   headlineElement2.textContent = 'The Easiest, Most Comfortable Way To Resolve Your Piriformis Pain';
+      // }
+
+      // if (utmContent === 'golfers_elbow') {
+      //   headlineElement.textContent = "Golfer's Elbow";
+      //   headlineElement2.textContent = "The Easiest, Most Comfortable Way To Resolve Your Golfer's Elbow";
+      // }
+
+      // if (utmContent === 'bursitis') {
+      //   headlineElement.textContent = 'Bursitis Pain';
+      //   headlineElement2.textContent = 'The Easiest, Most Comfortable Way To Resolve Your Bursitis Pain';
+      // }
+      
+    });
+  </script>
+
+  <style>
+    ul {
+      list-style-type: none; /* Remove default bullets */
+      padding: 0; /* Remove default padding */
+    }
+    li {
+      display: flex; /* Use flexbox for alignment */
+      align-items: center; /* Center items vertically */
+      margin-bottom: 5px; /* Add some space between items */
+    }
+    li img {
+      margin-right: 8px; /* Space between icon and text */
+    }
+  </style>
+
+<div id="tech" class="container">
+  <p class="md:block section-headline text-2xl font-bold text-blue-950 mb-6">{props.headlineMain}</p>
+  <p id="dynamic-subMain" class="md:block section-headline text-lg mb-6">{props.subMain}</p>
+  
+  <div class="md:hidden flex justify-center mb-4">
+    <video id="erick-gif-mobile" class="shadow-lg" width="320" height="240" autoplay muted playsinline loop>
+      <source src="/videos/rptc_gif.mp4" type="video/mp4">
+    </video>
+  </div>
+  
+  <div class="hidden md:flex justify-center mb-4">
+    <video id="erick-gif-desktop" class="shadow-lg" width="320" height="240" autoplay muted playsinline loop>
+      <source src="/videos/rptc_gif.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="flex justify-around mb-6 md:hidden">
+    <img src={props.pillicon} class="w-30 h-11" alt="Fix Wrist Pain NO Pills"/>
+    <img src={props.needleicon} class="w-30 h-11" alt="Fix Wrist Pain NO Injections"/>
+    <img src={props.surgeryicon} class="w-30 h-11" alt="Fix Wrist Pain NO Surgery"/>
+  </div>
+
+  <p class="section-headline text-lg mb-4">{props.headline}</p>
+  
+  <ul class="md:hidden ml-11 mb-4">
+    <li>
+      <img src="/img/blue-checkmark.svg" alt="Coffee icon" style="width:16px; height:16px;"> Years of R&D
+    </li>
+    <li>
+      <img src="/img/blue-checkmark.svg" alt="Tea icon" style="width:16px; height:16px;"> Patented Technology
+    </li>
+    <li>
+      <img src="/img/blue-checkmark.svg" alt="Milk icon" style="width:16px; height:16px;"> Outperforms Other Methods
+    </li>
+    <li>
+      <img src="/img/blue-checkmark.svg" alt="Tea icon" style="width:16px; height:16px;"> No Meds, Needles, or Surgery
+    </li>
+    <li>
+      <img src="/img/blue-checkmark.svg" alt="Milk icon" style="width:16px; height:16px;"> <span class="font-bold">Highly Effective At Solving</span>
+    </li>
+    <li>
+      <span class="font-bold ml-6">Sciatica Pain, Lower Back Pain,</span>
+    </li>
+    <li>
+      <span class="font-bold ml-6">Piriformis Pain, Golfers Elbow,</span>
+    </li>
+    <li>
+      <span class="font-bold ml-6">Bursitis, and more....</span>
+    </li>
+  </ul>
+
+  <div class="hidden md:flex justify-center space-x-28 mb-6">
+      <img src={props.pillicon} class="w-30 h-11" alt="Fix Wrist Pain NO Pills"/>
+      <img src={props.needleicon} class="w-30 h-11" alt="Fix Wrist Pain NO Injections"/>
+      <img src={props.surgeryicon} class="w-30 h-11" alt="Fix Wrist Pain NO Surgery"/>
+  </div>
+
+  <div class="hidden md:flex justify-center mb-4">
+      <ul class="text-left">
+        <li class="flex items-center mb-2">
+          <img src="/img/blue-checkmark.svg" alt="Coffee icon" style="width:16px; height:16px;" class="mr-2"> Years of R&D
+        </li>
+        <li class="flex items-center mb-2">
+          <img src="/img/blue-checkmark.svg" alt="Tea icon" style="width:16px; height:16px;" class="mr-2"> Patented Technology
+        </li>
+        <li class="flex items-center mb-2">
+          <img src="/img/blue-checkmark.svg" alt="Milk icon" style="width:16px; height:16px;" class="mr-2"> Outperforms Other Methods
+        </li>
+        <li class="flex items-center mb-2">
+          <img src="/img/blue-checkmark.svg" alt="Tea icon" style="width:16px; height:16px;" class="mr-2"> No Meds, Needles, or Surgery
+        </li>
+        <li class="flex items-center mb-2">
+          <img src="/img/blue-checkmark.svg" alt="Milk icon" style="width:16px; height:16px;" class="mr-2"> <span class="font-bold">Highly Effective At Solving Sciatica Pain, Lower Back Pain, Piriformis Pain,</span>
+        </li>
+        <li class="flex items-center mb-2 ml-6">
+          <span class="font-bold">Golfers Elbow, Bursitis, and more...</span>
+        </li>
+      </ul>
+  </div>      
+
+  <p class="px-4 mb-4 ml-4">Our clients with <span id="dynamic-keyword">Sciatica Pain</span> often come to us after seeking relief for months, or even years. They've tried medicine, exercise, shots, massage, surgery - or resigned to a life of pain. These methods often give temporary relief. But, they do not fix the physical imbalances that cause pain.</p>
+  <p class="px-4 mb-4 ml-4">Robotic Precision Therapy (RPT) uses the RX2600 to target the root cause of discomfort. It does this rather than simply treating the symptoms. It achieves deeper tissue mobilization and keeps precise pressure longer than other manual therapies. The RX2600 is more effective and leads to faster and longer relief. It helps even those who have not found success with other supposed solutions.</p>
+
+  <!-- <div class="max-w-3xl mx-auto mb-4">
+    <iframe src="https://player.vimeo.com/video/1065584788" title="Begin Sciatica Pain Relief Journey" id="vim_player_1" class="w-full aspect-video border border-neutral-500" allowfullscreen></iframe>
+  </div> -->
+</div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll<HTMLVideoElement>('#erick-gif-mobile, #erick-gif-desktop');
+
+    videos.forEach(video => {
+      video.addEventListener('timeupdate', () => {
+        if (video.currentTime > video.duration - 1) { // Change the value to reduce the time before restart
+          video.currentTime = 0.9;
+          video.play();
+        }
+      });
+    });
+  });
+</script>

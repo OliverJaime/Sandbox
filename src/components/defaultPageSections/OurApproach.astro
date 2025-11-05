@@ -1,0 +1,37 @@
+---
+interface Props {
+  headline: string;
+  summary: string;
+  approaches: Approach[];
+}
+
+export interface Approach {
+  embedURL: string;
+  embedID: string;
+  desc: string;
+  videothumbnail: string;
+}
+
+const props = Astro.props;
+---
+
+<div class="bg-brand-text text-brand-secondary py-10">
+  
+  <div id="unique" class="container">
+    <p class="section-headline mb-10">{props.headline}</p>
+    <!-- <p class="text-left mb-10">Robotic Precision Therapy takes manual therapy, a <span class='text-sky-500 font-bold'>proven method</span> for relieving tension and reducing pain, to the next level. It enhances joint and muscle movement by delivering precise, graded pressure at specific intervals. This means <span class='text-sky-500 font-bold'>better results in less time</span> and with minimal discomfort. Some patients find it so relaxing that they fall asleep during the treatment. It's one of the <span class='text-sky-500 font-bold'>easiest and most comfortable</span> ways to relieve pain.</p> -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-12">
+      {
+        props.approaches.map((approach, index) => {
+          return (
+            <div class="md:block items-start">
+              <iframe src={approach.embedURL} title="Treatmment Video" id={approach.embedID} class="w-full h-auto shrink-0 md:w-full aspect-video mb-4" allowfullscreen></iframe>
+              <p class="pl-3 md:pl-0 text-sm md:text-base leading-tight mt-6 font-bold">{approach.desc}</p>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,25 @@
+{
+  "photo": "/img/location.jpg",
+  "street": "7138 Sashabaw Road",
+  "suite": "",
+  "citystatezip": "Clarkston, MI 48348",
+  "entranceinfo": "",
+  "phone": "(248) 744-2978",
+  "hours": [
+    {
+      "day": "Mon-Fri",
+      "time": "8:00am - 6pm"
+    },
+    {
+      "day": "Saturday",
+      "time": "Closed"
+    },
+    {
+      "day": "Sunday",
+      "time": "Closed"
+    }    
+  ],
+  "website": "www.livewellrtc.com",
+  "websiteurl": "https://livewellrtc.com/?utm_source=google&utm_medium=cpc",
+  "gmapsembed": "!1m18!1m12!1m3!1d5860.446763184574!2d-83.38133222255804!3d42.741325871159994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882497e735e0762d%3A0x7e20ade0db2bca74!2sLivewell%20Robotic%20Therapy%20Center!5e0!3m2!1sen!2sus!4v1758664461639!5m2!1sen!2sus"
+ }

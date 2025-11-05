@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.masthead-text {
+  text-shadow: rgba(0,0,0,0.5) 0 2px 20px;
+}
+
+.section-headline {
+  @apply text-3xl md:text-4xl font-bold text-center;
+}
+.section-headline-form {
+  @apply text-xl md:text-3xl font-bold text-center;
+}
+
+.star-shadow {
+  text-shadow: 0 0 1px #d97706;
+}

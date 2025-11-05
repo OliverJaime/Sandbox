@@ -1,0 +1,125 @@
+.call-to-action {
+  @apply bg-brand-primary
+  hover:bg-brand-dark
+  active:bg-brand-dark
+
+  border
+  border-neutral-500
+  hover:border-neutral-700
+  active:border-neutral-800
+
+  shadow-lg
+  hover:shadow-xl
+  active:shadow-inner
+
+  transition-all
+  duration-100
+
+  text-white
+  text-xl
+  font-bold
+
+  px-5
+  py-2;
+}
+
+.call-to-action-tmax {
+  @apply bg-brand-primary
+  hover:bg-brand-dark
+  active:bg-brand-dark
+
+  border
+  border-neutral-500
+  hover:border-neutral-700
+  active:border-neutral-800
+
+  shadow-lg
+  hover:shadow-xl
+  active:shadow-inner
+
+  transition-all
+  duration-100
+
+  text-white
+  text-xl
+  font-bold
+
+  px-5
+  py-2;
+}
+
+.call-to-action-tpt {
+  @apply bg-brand-primary_tpt
+  hover:bg-brand-dark_tpt
+  active:bg-brand-dark_tpt
+
+  border
+  border-neutral-500
+  hover:border-neutral-700
+  active:border-neutral-800
+
+  shadow-lg
+  hover:shadow-xl
+  active:shadow-inner
+
+  transition-all
+  duration-100
+
+  text-white
+  text-xl
+  font-bold
+
+  px-5
+  py-2;
+}
+
+.video-button {
+  @apply bg-brand-dark
+  hover:bg-brand-primary
+  active:bg-brand-primary
+
+  border
+  border-neutral-500
+  hover:border-neutral-700
+  active:border-neutral-800
+
+  shadow-lg
+  hover:shadow-xl
+  active:shadow-inner
+
+  transition-all
+  duration-100
+
+  text-white
+  text-sm
+  font-bold
+
+  px-5
+  py-2;
+}
+
+.video-button-tpt {
+  @apply bg-brand-primary_tpt
+  hover:bg-brand-dark_tpt
+  active:bg-brand-dark_tpt
+
+  border
+  border-neutral-500
+  hover:border-neutral-700
+  active:border-neutral-800
+
+  shadow-lg
+  hover:shadow-xl
+  active:shadow-inner
+
+  transition-all
+  duration-100
+
+  text-white
+  text-sm
+  font-bold
+
+  px-5
+  py-2;
+}
+

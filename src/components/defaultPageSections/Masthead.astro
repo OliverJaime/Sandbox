@@ -1,0 +1,122 @@
+---
+interface Props {
+  logo: string;
+  mobileLogo: string;
+  star: string;
+  contact: string;
+  headline: string;
+  subhead: string;
+  subhead2: string;
+  subhead3: string;
+  subhead4: string;
+  cta: string;
+  ctaurl: string;
+  ctabuttonclass: string;
+  ctabuttonclassMobile: string;
+  pillicon: string;
+  needleicon: string;
+  surgeryicon: string;
+  carouselImages: string[];   // NEW
+}
+
+const {
+  logo, mobileLogo, contact, 
+  pillicon, needleicon, surgeryicon,
+  carouselImages
+} = Astro.props;
+---
+
+<!-- ============================================= -->
+<!-- 1. Masthead container (your original background) -->
+<div
+  id="dynamicBackground"
+  class="relative overflow-hidden bg-no-repeat md:bg-center bg-mobile-custom md:bg-desktop-custom bg-custom-mobile-focus"
+>
+  <!-- ------------------------------------------------ -->
+  <!-- 2. FULL-SCREEN CAROUSEL (one image at a time) -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="carousel-track">
+      <!-- One copy is enough — we animate by full viewport width -->
+      {carouselImages.map(src => (
+        <img src={src} alt="" class="carousel-img" loading="lazy" />
+      ))}
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------ -->
+  <!-- 3. Your original content (unchanged) -->
+  <div class="relative z-10 flex justify-between items-center mb-8 bg-black">
+    <img src={logo} alt="Clinic Logo" class="w-[200px] h-auto ml-6 mt-3 mb-3 bg-black hidden md:block" />
+    <img src={mobileLogo} alt="Mobile Clinic Logo" class="w-[50px] h-auto ml-3 mt-3 mb-3 bg-black md:hidden" />
+    <div class="text-xs text-brand-secondary font-bold text-right mt-4 bg-black">
+      <p style="margin-right: 1em;"><a href="tel:+12487442978">{contact}</a></p>
+      <p style="margin-right: 1em;" class="text-center">7138 Sashabaw Road</p>
+      <p style="margin-right: 1em;" class="text-right mb-3">Clarkston, MI 48348</p>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------ -->
+  <!-- 4. Rest of your markup (copy-paste exactly as you had it) -->
+  <div style="margin-top: -32px;" class="container bg-transparent md:bg-transparent min-h-[36rem] md:min-h-screen flex flex-col justify-stretch">
+    <div id="start" class="flex flex-col grow justify-around md:justify-center items-start md:items-start text-white md:space-y-8">
+      <!-- ... all your existing h1, h2, CTA, etc. ... -->
+      <!-- (just keep everything inside this div exactly as before) -->
+    </div>
+
+    <!-- Bottom icons, disclaimer, etc. -->
+    <div class="hidden md:flex justify-around text-white font-semibold text-4xl pb-2">
+      <h3>No Meds</h3>
+      <h3>No Needles</h3>
+      <h3>No Surgery</h3>
+    </div>
+    <div class="hidden md:flex justify-around mb-6">
+      <img src={pillicon} class="w-30 h-11" alt="No pills necessary for treatment"/>
+      <img src={needleicon} class="w-30 h-11" alt="No needles or injections necessary for treatment"/>
+      <img src={surgeryicon} class="w-30 h-11" alt="No surgery necessary for treatment"/>
+    </div>
+    <br>
+    <h3 style="margin-top: -2em;" class="hidden md:block md:text-center text-xs masthead-text mt-2 text-white mb-2">
+      <span class="text-xs italic">*Results may vary. Most patients experience lasting relief in just 6 sessions or less. Those suffering for many years may take longer.</span>
+    </h3>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- 5. Carousel CSS – fixed speed + uniform image size -->
+<style>
+  .carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-full 15s linear infinite;
+  }
+
+  .carousel-img {
+    width: 100vw;              /* Full viewport width */
+    height: 100%;              /* Full masthead height */
+    object-fit: cover;         /* Crop to fill, no distortion */
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll-full {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Pause on hover */
+  #dynamicBackground:hover .carousel-track {
+    animation-play-state: paused;
+  }
+</style>
+
+<!-- ============================================= -->
+<!-- 6. Your existing UTM script (unchanged) -->
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmContent = urlParams.get('utm_content');
+    const headlineElement = document.getElementById('dynamicHeadline');
+    const headlineElement2 = document.getElementById('dynamicHeadline2');
+
+    // ... all your existing `if (utmContent === ...)` blocks ...
+  });
+</script>

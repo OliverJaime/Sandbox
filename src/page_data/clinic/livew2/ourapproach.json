@@ -1,0 +1,24 @@
+{
+  "headline": "Our Unique Approach",
+  "summary": "The RX2600 takes manual therapy, a proven method for relieving tension and reducing pain, to the next level. It enhances joint and muscle movement by delivering precise, graded pressure at specific intervals. This means better results in less time and with minimal discomfort. Some patients find it so relaxing that they fall asleep during the treatment. It's one of the easiest and most comfortable ways to relieve pain.",
+  "approaches": [
+    {
+      "embedURL": "https://player.vimeo.com/video/1065584846",
+      "embedID": "vim_player_6",
+      "desc": "",
+      "videothumbnail": ""
+    },
+    {
+      "embedURL": "https://player.vimeo.com/video/1065585060",
+      "embedID": "vim_player_8",
+      "desc": "",
+      "videothumbnail": ""
+    },
+    {
+      "embedURL": "https://player.vimeo.com/video/1065585085",
+      "embedID": "vim_player_7",
+      "desc": "",
+      "videothumbnail": ""
+    }
+  ]
+}

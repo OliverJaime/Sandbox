@@ -1,0 +1,118 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MobileContactBar from "../../components/defaultPageSections/MobileContactBar.astro";
+import Logos from "../../components/defaultPageSections/Logos.tsx";
+import Testimonials from "../../components/defaultPageSections/Testimonials.tsx";
+import OurApproach from "../../components/defaultPageSections/OurApproach.astro";
+import FAQ from "../../components/defaultPageSections/FAQs.astro";
+import OurSpecialists from "../../components/defaultPageSections/OurSpecialists.tsx";
+import Reviews from "../../components/defaultPageSections/Reviews.tsx";
+import Location from "../../components/defaultPageSections/Location.astro";
+import ContactForm from "../../components/defaultPageSections/ContactForm.astro";
+import Footer from "../../components/defaultPageSections/Footer.astro";
+import Treatment from "../../components/defaultPageSections/Treatment.astro";
+
+import { readdirSync, existsSync, readFileSync } from "fs";
+import * as process from "process";
+
+const { slug } = Astro.params;
+
+export async function getStaticPaths() {
+  const getDirectories = (source) =>
+    readdirSync(source, { withFileTypes: true })
+      .filter((dirent) => dirent.isDirectory())
+      .map((dirent) => dirent.name);
+  const directories = getDirectories(process.cwd() + "/src/page_data/clinic");
+  const getDataOrDefault = (fileName: string, folderName: string) => {
+    if (
+      existsSync(
+        process.cwd() + `/src/page_data/clinic/${folderName}/${fileName}.json`,
+      )
+    ) {
+      return JSON.parse(
+        readFileSync(
+          process.cwd() + `/src/page_data/clinic/${folderName}/${fileName}.json`,
+          "utf-8",
+        ),
+      );
+    } else {
+      return JSON.parse(
+        readFileSync(
+          process.cwd() + `/src/page_data/clinic/default/${fileName}.json`,
+          "utf-8",
+        ),
+      );
+    }
+  };
+  let returnObject = [];
+  directories.forEach((folderName) => {
+    returnObject.push({
+      params: {
+        slug: folderName,
+      },
+      props: {
+        slug: folderName,
+        seo: getDataOrDefault("seo", folderName),
+        contactinfo: getDataOrDefault("contactinfo", folderName),
+        masthead: getDataOrDefault("masthead", folderName),
+        treatpain: getDataOrDefault("treatpain", folderName),
+        logos: getDataOrDefault("logos", folderName),
+        treatment: getDataOrDefault("treatment", folderName),
+        testimonials: getDataOrDefault("testimonials", folderName),
+        ourapproach: getDataOrDefault("ourapproach", folderName),
+        faqs: getDataOrDefault("faqs", folderName),
+        specialists: getDataOrDefault("specialists", folderName),
+        reviews: getDataOrDefault("reviews", folderName),
+        location: getDataOrDefault("location", folderName),
+        contactform: getDataOrDefault("contactform", folderName),
+        footer: getDataOrDefault("footer", folderName),
+      },
+    });
+  });
+  return returnObject;
+}
+
+const { seo, contactinfo, masthead, treatpain, logos, treatment, testimonials, ourapproach, faqs, specialists, reviews, location, contactform, footer } = Astro.props;
+
+let Masthead;
+let TreatPain;
+try {
+  Masthead = (await import(`../../components/defaultPageSections/Masthead_${slug}.astro`)).default;
+} catch (e) {
+  Masthead = (await import("../../components/defaultPageSections/Masthead.astro")).default;
+}
+
+try {
+  TreatPain = (await import(`../../components/defaultPageSections/TreatPain_${slug}.astro`)).default;
+} catch (e) {
+  TreatPain = (await import("../../components/defaultPageSections/TreatPain.astro")).default;
+}
+
+const isLivew = slug === 'livew';
+const isLivew1= slug === 'livew1';
+// const isTmax1 = slug === 'tmax1';
+// const isTmax = slug === 'tmax';
+
+// Override background class for Logos component
+const logosProps = {
+  ...logos,
+  backgroundclass: isLivew1 ? 'bg-#E9E9E9 pb-10' : logos.backgroundclass,
+};
+---
+
+<Layout title={seo.title} desc={seo.desc}>
+  <MobileContactBar {...contactinfo} />
+  <Masthead {...masthead} />
+  <TreatPain {...treatpain} />
+  {isLivew && <Logos {...logosProps} client:load />}
+  {isLivew && <Treatment {...treatment} />}  
+  {!isLivew && <Logos {...logosProps} client:load />}
+  <Testimonials {...testimonials} client:load />
+  <OurApproach {...ourapproach} />
+  <FAQ {...faqs} />
+  <OurSpecialists {...specialists} client:load />
+  <Reviews {...reviews} client:load />
+  <Location {...location} />
+  <ContactForm {...contactform} />
+  <Footer {...footer} />
+</Layout>

@@ -1,0 +1,111 @@
+---
+interface Props {
+  headline: string;
+  summary: string;
+  cta: string;
+  ctaurl: string;
+  ctabuttonclass: string;
+  ctabuttonclassMobile: string;
+}
+
+const props = Astro.props;
+---
+
+<!-- Dynamic 1st section video -->
+<script type="module">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmContent = urlParams.get('utm_content');
+
+    if (utmContent === 'lower_back') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1120984632";
+      document.getElementById('vim_player_1').title = "Begin Backpain Relief Journey";
+    }
+
+    if (utmContent === 'sciatica') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1120984357";
+      // document.getElementById('vim_player_1').title = "Begin Sciatica Relief Journey";
+    }
+
+    if (utmContent === 'herniated_disc') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1120983849";
+      document.getElementById('vim_player_1').title = "Begin Herniated Disc Relief Journey";
+    }
+
+    if (utmContent === 'bulging_disc') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1120983658";
+      document.getElementById('vim_player_1').title = "Begin Bulging Disc Relief Journey";
+    }
+
+    if (utmContent === 'piriformis') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1120984084";
+      document.getElementById('vim_player_1').title = "Begin Piriformis Relief Journey";
+    }
+
+    // if (utmContent === 'trendel_gait') {
+    //   document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1113719045";
+    //   document.getElementById('vim_player_1').title = "Begin Trendelenburg Gait Relief Journey";
+    // }
+
+    if (utmContent === 'neck_pain') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1121626185";
+      document.getElementById('vim_player_1').title = "Begin Neck Pain Relief Journey";
+    }
+
+    // ARM 
+    if (utmContent === 'carpal_tunnel') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1120986059";
+      document.getElementById('vim_player_1').title = "Begin Carpal Tunnel Relief Journey";
+    }
+
+    if (utmContent === 'shoulder_pain') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1120987023";
+      document.getElementById('vim_player_1').title = "Begin Shoulder Pain Relief Journey";
+    }
+
+    // FOOT
+    if (utmContent === 'plantar') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1131055497";
+      document.getElementById('vim_player_1').title = "Begin Plantar Fasciitis Relief Journey";
+    }
+
+    if (utmContent === 'foot_pain') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1131055833";
+      document.getElementById('vim_player_1').title = "Begin Foot Pain Relief Journey";
+    }
+
+    // LEG
+    if (utmContent === 'knee_pain') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1131053806";
+      document.getElementById('vim_player_1').title = "Begin Knee Pain Relief Journey";
+    }
+
+    if (utmContent === 'hip_pain') {
+      document.getElementById('vim_player_1').src = "https://player.vimeo.com/video/1131053533";
+      document.getElementById('vim_player_1').title = "Begin Hip Pain Relief Journey";
+    }
+    
+  });
+</script>
+
+<div id="treatment" class="bg-brand-dark text-brand-secondary py-10">
+  <div class="container">
+    <!-- <p class="section-headline mb-6">How we treat <span id="dynamic-keyword2">Sciatica Pain</span> compared to others</p> -->
+    <p class="section-headline mb-6">Relief Beyond Traditional Therapies</p>
+
+    <div class="max-w-3xl mx-auto mb-4">
+      <iframe src="https://player.vimeo.com/video/1120984357" title="Sciatica Pain Intro Video" id="vim_player_1" class="w-full aspect-video border border-neutral-500" allowfullscreen></iframe>
+    </div>
+
+    <!-- <p class="px-4 mb-4 ml-4">Our clients with <span id="dynamic-keyword">Sciatica Pain</span> often come to us after seeking relief for months, or even years. They've tried medicine, exercise, shots, massage, surgery - or resigned to a life of pain. These methods often give temporary relief. But, they do not fix the physical imbalances that cause pain.</p> -->
+    <p class="px-4 mb-4 ml-4">Our patients often come to us after searching for relief for months or even years. They've tried injections, medication, exercise, massage, even surgery and are still dealing with pain.</p>
+    <p class="px-4 mb-4 ml-4">We use the RX2600 Therapeutic Robot to apply precise static pressure in intervals to lengthen tight muscles. This helps relieve tension on the bone structure and reduces aches and pains.</p>
+    
+    <!-- <a style="margin-left: 2.1em;" href={props.ctaurl} target="_blank" id="btn-CTA2" class={props.ctabuttonclassMobile}>{props.cta}</a>     -->
+
+  </div>
+
+  <!-- <a href={props.ctaurl} target="_blank" id="btn-CTA2" class={props.ctabuttonclass} style="max-width: 300px; width: 236px; margin: 0 auto;">
+    {props.cta}
+  </a> -->
+</div>

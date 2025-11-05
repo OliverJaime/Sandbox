@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Colored_elements" xmlns="http://www.w3.org/2000/svg" width="15.7in" height="15.7in" version="1.1" viewBox="0 0 1129 1129">
+  <!-- Generator: Adobe Illustrator 29.7.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 8)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #6195bd;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5, .st6 {
+        fill-rule: evenodd;
+      }
+
+      .st1 {
+        fill: #010101;
+      }
+
+      .st2 {
+        fill: #9183a4;
+      }
+
+      .st3 {
+        fill: #ee8a92;
+      }
+
+      .st4 {
+        fill: #c385a3;
+      }
+
+      .st5 {
+        fill: #f19675;
+      }
+
+      .st6 {
+        fill: #efad86;
+      }
+    </style>
+  </defs>
+  <path id="light_orange_element" class="st6" d="M142,854h746l149,136H142v-136Z"/>
+  <path id="dark_orange_element" class="st5" d="M142,725h598l145,129H142v-129Z"/>
+  <path id="light_pink_element" class="st3" d="M142,592h449l148,133H142v-133Z"/>
+  <path id="dark_pink_element" class="st4" d="M142,476h318l127,116H142v-116Z"/>
+  <path id="Purple_element" class="st2" d="M142,352h178l138,124H142v-124Z"/>
+  <path id="blue_element" class="st0" d="M142,352v-155l3,1,172,154h-175Z"/>
+  <path id="RPT_Icon_Vector" class="st1" d="M143,115l415,1h64c55.4,0,118.8-1.5,164,10,88.2,22.4,165.9,75.7,209,144,14.1,22.3,24.8,48.2,33,76,39.4,133.6-42.1,252.2-114,303-14.9,10.5-85.1,54.2-109,46-12.3-5.8-105.2-84.7-111-95l44-24c44.5-25.9,93.8-39,121-82,59.3-93.8-3.2-189.8-78-222-37.6-16.2-105.3-10-158-10h-325L143,115ZM641,289v701h-160c.3-233.6.7-467.3,1-701h159Z"/>
+</svg>

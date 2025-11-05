@@ -1,0 +1,20 @@
+{
+  "backgroundclass": "bg-#F8FAFC pb-10",
+  "logos": [
+    {
+      "imagepath": "/img/icon-1.png",
+      "clickurl": "https://youtu.be/gPAx-iMBO7w",
+      "alt": "Patented Technologyy"
+    },
+    {
+      "imagepath": "/img/icon-2.png",
+      "clickurl": "https://youtu.be/CYvqk5u6xeE",
+      "alt": "FDA Approved"
+    },
+    {
+      "imagepath": "/img/icon-3.png",
+      "clickurl": "https://youtu.be/60EuoVb8ekg",
+      "alt": "Certified Therapists"
+    }
+  ]
+}

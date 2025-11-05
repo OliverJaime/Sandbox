@@ -1,0 +1,41 @@
+---
+import { AccordionComponent } from "../accordion/Accordion";
+
+interface Props {
+  headline: string;
+  cta: string;
+  ctaurl: string;
+  instaurl: string;
+  fburl: string;
+  twitterurl: string;
+  ctabuttonclass: string;
+  faqs: FAQ[];
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+const props = Astro.props;
+---
+
+<div id="faq" class="container py-10">
+  <h2 class="section-headline mb-6">{props.headline}</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 mb-10">
+  {
+    props.faqs.map((faq) => (
+      <AccordionComponent
+        p={{
+          TriggerText: faq.question,
+          TriggerBodyHTML: faq.answer,
+        }}
+        client:visible
+      />
+    ))
+  }
+  </div>
+  <div class="flex justify-center">
+    <a href={props.ctaurl} target="_blank" id="btn-CTA3" class={props.ctabuttonclass}>{props.cta}</a>
+  </div>
+</div>

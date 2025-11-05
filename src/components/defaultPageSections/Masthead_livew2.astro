@@ -1,0 +1,208 @@
+---
+interface Props {
+  logo: string;
+  star: string;
+  contact: string;
+  headline: string;
+  subhead: string;
+  subhead2: string;
+  subhead3: string;
+  subhead4: string;
+  cta: string;
+  ctaurl: string;
+  ctabuttonclass: string;
+  ctabuttonclassMobile: string;
+}
+
+// Import the Astro global object to access the current URL (not working)
+// import { Astro } from 'astro';
+
+const props = Astro.props;
+
+// Extract `utm_content` from the URL search parameters (not working)
+// const urlParams = new URL(Astro.request.url).searchParams;
+// const utmContent = urlParams.get('utm_content');
+
+// // Determine the appropriate background image class based on `utm_content` (not working)
+// let bgClass = 'bg-mastheadbg'; // Default background class
+// if (utmContent === 'herniated_disc') {
+//   bgClass = 'bg-carpalbg'; // This class needs to be defined in your Tailwind config
+// }
+
+---
+
+<!-- Use the dynamicBackground class to change the background image based on utm_content -->
+<div id="dynamicBackground" class="bg-no-repeat bg-custom-mobile-focus md:bg-center bg-cover">
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // const dynamicHeader = document.getElementById('dynamicHeader');
+
+      // window.addEventListener('scroll', () => {
+
+      //   // Handles the dynamic offer header visibility on scroll
+      //   const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+      //   const scrollPercentage = (scrollPosition / document.documentElement.scrollHeight) * 100;
+
+      //   if (scrollPercentage > 10) {
+      //     dynamicHeader.style.display = 'none';
+      //   } else {
+      //     dynamicHeader.style.display = 'block';
+      //   }
+      // });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmContent = urlParams.get('utm_content');
+      let bgClass = 'bg-mastheadbg'; // Default class
+
+      // Fetch the dynamicHeadline element
+      const headlineElement = document.getElementById('dynamicHeadline');
+      const headlineElement2 = document.getElementById('dynamicHeadline2');
+      // const subHeadSpan = document.getElementById('keyword-span');
+      // const subHeadSpan2 = document.getElementById('keyword-span2');
+
+
+      // Set the headline text if utm_content matches one of the keys in headlines
+      if (utmContent === 'sciatica') {
+        headlineElement.textContent = 'Sciatica Pain Relief';
+        headlineElement2.textContent = 'Sciatica Pain Relief';
+        // subHeadSpan.textContent = 'to resolve your sciatica.';
+        // subHeadSpan2.textContent = 'to resolve your sciatica.';
+      }
+
+      if (utmContent === 'lower_back') {
+        headlineElement.textContent = 'Lower Back Pain Relief';
+        headlineElement2.textContent = 'Lower Back Pain Relief';
+        // subHeadSpan.textContent = 'to resolve your lower back pain.';
+        // subHeadSpan2.textContent = 'to resolve your lower back pain.';
+      }
+
+      if (utmContent === 'herniated_disc') {
+        headlineElement.textContent = 'Herniated Disc Relief';
+        headlineElement2.textContent = 'Herniated Disc Relief';
+        // subHeadSpan.textContent = 'to resolve your herniated disc.';
+        // subHeadSpan2.textContent = 'to resolve your herniated disc.';
+      }
+
+      if (utmContent === 'bulging_disc') {
+        headlineElement.textContent = 'Bulging Disc Relief';
+        headlineElement2.textContent = 'Bulging Disc Relief';
+        // subHeadSpan.textContent = 'to resolve your bulging disc.';
+        // subHeadSpan2.textContent = 'to resolve your bulging disc.';
+      }
+
+      if (utmContent === 'piriformis') {
+        headlineElement.textContent = 'Piriformis Pain Relief';
+        headlineElement2.textContent = 'Piriformis Pain Relief';
+        // subHeadSpan.textContent = 'to resolve your piriformis pain.';
+        // subHeadSpan2.textContent = 'to resolve your piriformis pain.';
+      }
+
+      // Determine the class based on utm_content
+      // if (utmContent === 'low_back') {
+      //   bgClass = 'bg-backpainbg';
+      // }
+
+      // Add more conditions as necessary
+
+      // Apply the determined class to the div (this one is for the background image)
+      document.getElementById('dynamicBackground').classList.add(bgClass);
+    });
+  </script>
+
+  <!-- Hidden on desktop, shown on mobile -->
+  <!-- <div id="dynamicHeader" style="background-color: #F8FAFC;" class="md:hidden text-center pt-3 pb-2">
+    <span class="text-sm text-brand-primary font-bold text-center">$200 OPENING SPECIAL INCLUDES</span><br>
+    <span class="text-sm text-brand-primary font-bold text-center">1ST TWO SESSIONS (NORMAL $375). EXP 7/15.</span><br>
+  </div> -->
+
+  <!-- Hidden on mobile, shown on desktop -->
+  <!-- <div style="background-color: #F8FAFC;" class="hidden md:block text-center pt-3 pb-2">
+    <span class="text-sm text-brand-primary font-bold text-center">$200 OPENING SPECIAL INCLUDES 1ST TWO SESSIONS (NORMAL $375). EXP 7/15.</span><br>
+  </div> -->
+
+  <div class="flex justify-between items-center mb-8 bg-black">
+    <img src={props.logo} alt="Clinic Logo" class="w-[200px] h-auto mt-4 mb-3 bg-black" />
+    <div class="text-xs text-brand-secondary font-bold text-right mt-4 bg-black">
+      <p style="margin-right: 1em;">{props.contact}</p>
+      <p style="margin-right: 1em;" class="text-center">3250 W. Big Beaver Rd. Troy, Mi</p>
+    </div>
+  </div>
+
+  <!-- changed bg-black/25 to remove overlay and added margin-top -->
+  <div style="margin-top: -32px;" class="container bg-black/25 md:bg-transparent min-h-mastheadmobile md:min-h-screen flex flex-col justify-stretch">
+    <!-- Removed class "lg:hidden" for logo and phone number to show on desktop -->
+    <div id="start" class="flex flex-col grow justify-around md:justify-center items-start md:items-start text-white md:space-y-8">
+
+      <!-- Hidden on desktop, shown on mobile -->
+      <h3 style="margin-top: -3em;" class="md:hidden text-center text-sm masthead-text ml-10">
+        <div class="flex items-center justify-center mt-1">
+            <span class="text-yellow-500 font-bold">4.9</span><img class="w-[15px] ml-1" src={props.star} alt="5-star reviews" /><span class="ml-2">471+ 5-star Reviews Nationwide</span>
+        </div>
+       
+        <span class="font-bold">Robotic Precision Therapy</span><br />
+        <!-- <span class="font-bold">Now in Miami!</span> -->
+      </h3>
+      
+      <!-- Hidden on desktop, shown on mobile -->
+      <h1 id="dynamicHeadline" style="margin-bottom: -0.5em; margin-top: -1em;" class="md:hidden text-left md:text-left font-bold text-4xl md:text-5xl masthead-text">
+        {props.headline}
+      </h1> 
+
+      <!-- Hidden on mobile, shown on desktop -->
+      <h1 id="dynamicHeadline2" class="hidden md:block text-center md:text-left font-bold text-4xl md:text-5xl masthead-text mt-4">
+        {props.headline}
+      </h1>  
+      
+      <!-- Hidden on desktop, shown on mobile -->
+      <h2 style="margin-top: -4em; margin-bottom: -1em;" class="text-left md:hidden text-base masthead-text mt-1 mb-1">Same-Day Relief<br />Pain-Free in 4 to 6 Weekly Sessions*</h2>
+
+      <!-- Hidden on mobile, shown on desktop -->
+      <h2 class="hidden md:block text-left md:text-left text-xl masthead-text" set:html={props.subhead}></h2>
+
+      <!-- Hidden on mobile, shown on desktop -->
+      <h3 class="hidden md:block text-start text-base masthead-text">
+        <div class="flex items-center justify-center mt-1">
+            <span class="text-yellow-500 font-bold">4.9</span><img class="w-[15px] ml-1" src={props.star} alt="5-star reviews" /><span class="ml-2">471+ 5-star Reviews Nationwide</span>
+        </div>
+       
+        <span class="font-bold">Robotic Precision Therapy</span><br />
+        <!-- <span class="font-bold">Now in Miami!</span> -->
+      </h3>
+
+      <a style="margin-left: 3.3em; margin-top: -30px;" href={props.ctaurl} id="btn-CTA1" class={props.ctabuttonclassMobile}>{props.cta}</a>
+
+      <a href={props.ctaurl} id="btn-CTA1" class={props.ctabuttonclass}>{props.cta}</a>
+
+      <!-- Hidden on desktop, shown on mobile -->
+      <h3 style="margin-top: -8em;" class="md:hidden text-center text-sm masthead-text font mt-1 ml-4">
+        <span>$250 includes <span class="text-sky-400 font-bold">1st Two Sessions</span><span class="font-bold"> (90 & 60 min)</span></span><br />
+        <span>Offer <span class="text-sky-400 font-bold">Expires 8/31/24</span> - No Extensions</span><br />
+        <span><span class="text-sky-400 font-bold">33% Discount!</span> Normally $375</span>
+      </h3>
+
+      <!-- Hidden on mobile, shown on desktop -->
+      <h3 class="hidden md:block text-center md:text-left text-sm masthead-text font mt-1">
+        <span>$250 includes <span class="text-sky-400 font-bold">1st Two Sessions</span><span class="font-bold"> (90 & 60 min)</span></span><br />
+        <span>Offer <span class="text-sky-400 font-bold">Expires 8/31/24</span> - No Extensions</span><br />
+        <span><span class="text-sky-400 font-bold">33% Discount!</span> Normally $375</span>
+      </h3>
+
+      <!-- Hidden on desktop, shown on mobile -->
+      <h3 style="margin-top: -5em;" class="md:hidden text-center md:text-left text-xs masthead-text mt-2">
+        <span class="text-xs italic">*Results may vary. Most patients feel some pain relief after the first session and many achieve full pain relief within 4 - 6 sessions.</span><br />
+      </h3>
+
+    </div>
+    <div class="hidden md:flex justify-around text-white font-semibold text-4xl pb-10">
+      <h3>No Meds</h3>
+      <h3>No Needles</h3>
+      <h3>No Surgery</h3>
+    </div>
+
+    <!-- Hidden on mobile, shown on desktop -->
+    <!-- <h3 style="margin-top: -2em;" class="hidden md:block md:text-center text-xs masthead-text mt-2 text-white mb-4">
+        <span class="text-xs italic">*Results may vary. Most patients feel some pain relief after the first session and many achieve full pain relief within 4 - 6 sessions.</span>
+    </h3> -->
+  </div>
+</div>
