@@ -32,8 +32,8 @@ module.exports = {
       },
       backgroundImage: {
         // 'mastheadbg': "linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url('/img/masthead-bg.png')",
-        'mastheadbg': "url('/img/mastheadGradient2-bg.png')",
-        // 'mastheadbg-mobile': "url('/img/mastheadMobile-bg.png')", (Not used)
+        'mastheadbg': "url('/img/mastheadGradient1-bg.jpg')",
+        // 'mastheadbg-mobile': "url('/img/mastheadMobile-bg.png')",
         'mastheadbg-mobile': "linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0)), url('/img/mastheadMobile-bg.png')",
       },
       backgroundPosition: {
@@ -50,9 +50,9 @@ module.exports = {
       colors: {
         brand: {
           // RPT
-          primary: '#7567A3',
+          primary: '#3A95FD',
           secondary: '#E9E9E9',
-          dark: '#7567A3',
+          dark: '#061F59',
           text: '#1B1F29',
 
           // TPT

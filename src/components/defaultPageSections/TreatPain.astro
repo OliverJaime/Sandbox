@@ -5,214 +5,262 @@ interface Props {
   headline: string;
   overview: string;
   backgroundclass: string;
-  pillicon: string;
-  needleicon: string;
-  surgeryicon: string;
+  images?: string[];
 }
 
 const props = Astro.props;
+
+// Your 4 carousel images (convert HEIC files first!)
+const carouselImages = props.images || [
+  '/img/Psoas.jpg',
+  '/img/backpain-bg.jpg',
+  '/img/Foot2.jpg',  // Convert Foot2 (1).HEIC to this
+  '/img/Calf.jpg'    // Convert Calf.HEIC to this
+];
 ---
 
-<div class={props.backgroundclass}>
-
-  <script type="module">
-    document.addEventListener('DOMContentLoaded', (event) => {
+<div class={`${props.backgroundclass} relative overflow-hidden`}>
+  <!-- Dynamic headline script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const utmContent = urlParams.get('utm_content');
+      const headlineElement2 = document.getElementById('dynamic-subMain');
 
-      // const headlineElement = document.getElementById('dynamic-keyword');
-      const headlineElement2 = document.getElementById('dynamic-subMain');    
+      const headlines = {
+        'sciatica': 'Easiest & Most Comfortable Way To Resolve Your Sciatica Pain',
+        'lower_back': 'Easiest & Most Comfortable Way To Resolve Your Lower Back Pain',
+        'herniated_disc': 'Easiest & Most Comfortable Way To Resolve Your Herniated Disc',
+        'bulging_disc': 'Easiest & Most Comfortable Way To Resolve Your Bulging Disc',
+        'piriformis': 'Easiest & Most Comfortable Way To Resolve Your Piriformis Pain',
+        'trendel_gait': 'Easiest & Most Comfortable Way To Resolve Your Trendelenburg Gait',
+        'neck_pain': 'Easiest & Most Comfortable Way To Resolve Your Neck Pain'
+      };
 
-      // Set the headline text if utm_content matches one of the keys in headlines
-      if (utmContent === 'sciatica') {
-        // headlineElement.textContent = 'Sciatica Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Sciatica Pain';        
+      if (utmContent && headlines[utmContent] && headlineElement2) {
+        headlineElement2.textContent = headlines[utmContent];
+      }
+    });
+  </script>
+
+  <!-- Carousel functionality script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const carousel = document.getElementById('image-carousel');
+      if (!carousel) return;
+
+      const slides = carousel.querySelectorAll('[data-carousel-item]');
+      const dots = carousel.parentElement?.querySelectorAll('[data-carousel-dot]');
+      let currentIndex = 0;
+      let autoplayInterval;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          if (i === index) {
+            slide.classList.remove('opacity-0');
+            slide.classList.add('opacity-100');
+          } else {
+            slide.classList.remove('opacity-100');
+            slide.classList.add('opacity-0');
+          }
+        });
+
+        dots?.forEach((dot, i) => {
+          if (i === index) {
+            dot.classList.add('bg-blue-600');
+            dot.classList.remove('bg-gray-300');
+          } else {
+            dot.classList.remove('bg-blue-600');
+            dot.classList.add('bg-gray-300');
+          }
+        });
       }
 
-      if (utmContent === 'lower_back') {
-        // headlineElement.textContent = 'Lower Back Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Lower Back Pain';
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
       }
 
-      if (utmContent === 'herniated_disc') {
-        // headlineElement.textContent = 'Herniated Disc';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Herniated Disc';
+      function goToSlide(index) {
+        currentIndex = index;
+        showSlide(currentIndex);
+        resetAutoplay();
       }
 
-      if (utmContent === 'bulging_disc') {
-        // headlineElement.textContent = 'Bulging Disc';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Bulging Disc';
+      function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 4000);
       }
 
-      if (utmContent === 'piriformis') {
-        // headlineElement.textContent = 'Piriformis Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Piriformis Pain';
+      function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
       }
 
-      if (utmContent === 'trendel_gait') {
-        // headlineElement.textContent = 'Trendelenburg Gait';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Trendelenburg Gait';
-      }
+      dots?.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+      });
 
-      if (utmContent === 'neck_pain') {
-        // headlineElement.textContent = 'Neck Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Neck Pain';
-      }
+      showSlide(0);
+      startAutoplay();
 
-      // ARM
-      if (utmContent === 'carpal_tunnel') {
-        // headlineElement.textContent = 'Carpal Tunnel';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Carpal Tunnel';        
-      }
-
-      if (utmContent === 'shoulder_pain') {
-        // headlineElement.textContent = 'Shoulder Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Shoulder Pain';
-      }
-
-      // FOOT
-      if (utmContent === 'plantar') {
-        // headlineElement.textContent = 'Plantar Fasciitis Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Plantar Fasciitis Pain';        
-      }
-
-      if (utmContent === 'foot_pain') {
-        // headlineElement.textContent = 'Foot Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Foot Pain';
-      }
-
-      // LEG
-      if (utmContent === 'knee_pain') {
-        // headlineElement.textContent = 'Knee Pain Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Knee Pain Pain';        
-      }
-
-      if (utmContent === 'hip_pain') {
-        // headlineElement.textContent = 'Hip Pain';
-        headlineElement2.textContent = 'Easiest & Most Comfortable Way To Resolve Your Hip Pain';
-      }
-      
+      carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+      carousel.addEventListener('mouseleave', startAutoplay);
     });
   </script>
 
   <style>
     ul {
-      list-style-type: none; /* Remove default bullets */
-      padding: 0; /* Remove default padding */
+      list-style-type: none;
+      padding: 0;
     }
     li {
-      display: flex; /* Use flexbox for alignment */
-      align-items: center; /* Center items vertically */
-      margin-bottom: 5px; /* Add some space between items */
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      line-height: 1.5;
     }
     li img {
-      margin-right: 8px; /* Space between icon and text */
+      margin-right: 10px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel-dot:hover {
+      transform: scale(1.2);
     }
   </style>
 
-    <div id="tech" class="container">
-    <p class="md:block section-headline text-2xl font-bold text-blue-950 mb-6">{props.headlineMain}</p>
-    <p id="dynamic-subMain" class="md:block section-headline text-lg mb-6">{props.subMain}</p>
-    
-    <div class="md:hidden flex justify-center mb-4">
-        <video id="erick-gif-mobile" class="shadow-lg" width="320" height="240" autoplay muted playsinline loop>
-        <source src="/videos/rptc_gif.mp4" type="video/mp4">
-        </video>
+      <div id="tech" class="container relative z-10 py-12 max-w-4xl md:max-w-5xl mx-auto">
+    <!-- Main Headline -->
+    <h2 class="section-headline text-2xl md:text-3xl font-bold text-blue-950 mb-8">
+      {props.headlineMain}
+    </h2>
+
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      
+      <!-- Left Column: Copy -->
+      <div>
+        <h3 class="section-headline text-lg md:text-xl font-semibold mb-4 text-blue-950">
+          {props.headline}
+        </h3>
+      
+        <!-- Benefits list -->
+        <ul class="mb-6">
+          <li>
+            <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:20px; height:20px;"> 
+            <span>No Discomfort</span>
+          </li>
+          <li>
+            <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:20px; height:20px;"> 
+            <span>Non-Invasive</span>
+          </li>
+          <li>
+            <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:20px; height:20px;"> 
+            <span>Years of R&D</span>
+          </li>
+          <li>
+            <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:20px; height:20px;"> 
+            <span>Patented Technology</span>
+          </li>
+          <li>
+            <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:20px; height:20px;"> 
+            <span>Outperforms Other Methods</span>
+          </li>
+          <li>
+            <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:20px; height:20px;"> 
+            <span class="font-bold">Highly Effective At Solving Sciatica Pain, Lower Back Pain, Piriformis Pain, Golfers Elbow, Bursitis, and more</span>
+          </li>
+        </ul>
+
+        <!-- Subheading -->
+        {props.subMain && (
+          <p id="dynamic-subMain" class="section-headline text-base md:text-lg text-gray-700 mt-6">
+            {props.subMain}
+          </p>
+        )}
+      </div>
+
+      <!-- Right Column: Image Carousel -->
+      <div class="hidden md:block relative">
+        <div class="carousel-container">
+          <!-- Carousel slides -->
+          <div id="image-carousel" class="w-full h-full">
+            {carouselImages.map((image, index) => (
+              <div 
+                class="carousel-slide opacity-0" 
+                data-carousel-item
+              >
+                <img 
+                  src={image} 
+                  alt={`Treatment image ${index + 1}`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Navigation dots -->
+          <div class="carousel-dots">
+            {carouselImages.map((_, index) => (
+              <button 
+                class="carousel-dot bg-gray-300" 
+                data-carousel-dot
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
     </div>
-    
-    <div class="hidden md:flex justify-center mb-4">
-        <video id="erick-gif-desktop" class="shadow-lg" width="320" height="240" autoplay muted playsinline loop>
-        <source src="/videos/rptc_gif.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div class="flex justify-around mb-6 md:hidden">
-        <img src={props.pillicon} class="w-30 h-11" alt="Fix Wrist Pain NO Pills"/>
-        <img src={props.needleicon} class="w-30 h-11" alt="Fix Wrist Pain NO Injections"/>
-        <img src={props.surgeryicon} class="w-30 h-11" alt="Fix Wrist Pain NO Surgery"/>
-    </div>
-
-    <p class="section-headline text-lg mb-4">{props.headline}</p>
-  
-    <ul class="md:hidden ml-11 mb-4">
-        <li>
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;"> No Discomfort
-        </li>
-        <li>
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;"> Non-Invasive
-        </li>
-        <li>
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;"> Years of R&D
-        </li>
-        <li>
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;"> Patented Technology
-        </li>
-        <li>
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;"> Outperforms Other Methods
-        </li>
-        <!-- <li>
-            <img src="/img/blue-checkmark.svg" alt="Milk icon" style="width:16px; height:16px;"> <span class="font-bold">Highly Effective At Solving</span>
-        </li>
-        <li>
-            <span class="font-bold ml-6">Lower Back Pain, Sciatica Pain,</span>
-        </li>
-        <li>
-            <span class="font-bold ml-6">Piriformis Pain, Golfers Elbow,</span>
-        </li>
-        <li>
-            <span class="font-bold ml-6">Bursitis, and more....</span>
-        </li> -->
-    </ul>
-
-    <!-- <div class="hidden md:flex justify-center space-x-28 mb-6">
-        <img src={props.pillicon} class="w-30 h-11" alt="Fix Wrist Pain NO Pills"/>
-        <img src={props.needleicon} class="w-30 h-11" alt="Fix Wrist Pain NO Injections"/>
-        <img src={props.surgeryicon} class="w-30 h-11" alt="Fix Wrist Pain NO Surgery"/>
-    </div> -->
-
-    <div class="hidden md:flex justify-center mb-4">
-      <ul class="text-left">
-        <li class="flex items-center mb-2">
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;" class="mr-2"> No Discomfort
-        </li>
-        <li class="flex items-center mb-2">
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;" class="mr-2"> Non-Invasive
-        </li>
-        <li class="flex items-center mb-2">
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;" class="mr-2"> Years of R&D
-        </li>
-        <li class="flex items-center mb-2">
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;" class="mr-2"> Patented Technology
-        </li>
-        <li class="flex items-center mb-2">
-          <img src="/img/blue-checkmark.svg" alt="checkmark" style="width:16px; height:16px;" class="mr-2"> Outperforms Other Methods
-        </li>
-        <li class="flex items-center mb-2">
-          <img src="/img/blue-checkmark.svg" alt="Milk icon" style="width:16px; height:16px;" class="mr-2"> <span class="font-bold">Highly Effective At Solving Sciatica Pain, Lower Back Pain,</span>
-        </li>
-        <li class="flex items-center mb-2 ml-6">
-          <span class="font-bold">Piriformis Pain, Golfers Elbow, Bursitis, and more....</span>
-        </li>
-      </ul>
-    </div>      
-
-  <!-- <div class="max-w-3xl mx-auto mb-4">
-    <iframe src="https://player.vimeo.com/video/1065584788" title="Begin Sciatica Pain Relief Journey" id="vim_player_1" class="w-full aspect-video border border-neutral-500" allowfullscreen></iframe>
-  </div> -->
+  </div>
 </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const videos = document.querySelectorAll<HTMLVideoElement>('#erick-gif-mobile, #erick-gif-desktop');
-
-    videos.forEach(video => {
-      video.addEventListener('timeupdate', () => {
-        if (video.currentTime > video.duration - 1) { // Change the value to reduce the time before restart
-          video.currentTime = 0.9;
-          video.play();
-        }
-      });
-    });
-  });
-</script>

@@ -2,18 +2,12 @@
 interface Props {
   copyright: string;
   backgroundclass: string;
-  logo: string;
-  privacyPolicy: string;
 }
 
 const props = Astro.props;
 ---
 
-<!-- <div class={props.backgroundclass}>
-  <div class="w-full px-2 py-4 flex flex-col items-center text-center">   
-    <div class="flex justify-center mt-2">
-      <img src={props.logo} alt="Logo de la clínica" class="w-[100px] h-auto" />
-    </div>
+<div class={props.backgroundclass}>
   <div class="container">
     <div class="flex items-center space-x-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 10.976 9.869">
@@ -21,26 +15,5 @@ const props = Astro.props;
       </svg>
       <p class="text-sm">{props.copyright}</p>
     </div>
-  </div>
-  </div>
-</div> -->
-
-<div class={props.backgroundclass}>
-  <div class="w-full px-2 py-4 flex flex-col items-center text-center">    
-    <div class="flex justify-center mt-2">
-      <img src={props.logo} alt="Footer Logo" class="w-[70px] h-auto mb-2" />
-    </div>
-    <div class="flex items-center space-x-2 justify-center mb-1 mt-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 10.976 9.869" class="inline-block">
-        <path d="M6.051.563A5.233,5.233,0,0,0,.563,5.5a5.233,5.233,0,0,0,5.488,4.935A5.233,5.233,0,0,0,11.539,5.5,5.233,5.233,0,0,0,6.051.563Zm2.592,6.9a3.459,3.459,0,0,1-2.431.91,2.969,2.969,0,0,1-3.2-2.9A2.972,2.972,0,0,1,6.2,2.622,3.363,3.363,0,0,1,8.485,3.4a.22.22,0,0,1,.027.291l-.5.69a.284.284,0,0,1-.4.046,2.382,2.382,0,0,0-1.369-.475A1.5,1.5,0,0,0,4.608,5.461,1.563,1.563,0,0,0,6.252,7.047a2.269,2.269,0,0,0,1.45-.57.285.285,0,0,1,.41.021l.543.668a.22.22,0,0,1-.012.3Z" transform="translate(-0.563 -0.563)"/>
-      </svg>
-      <span class="text-xs text-gray-400">{new Date().getFullYear()} All rights reserved.</span>
-    </div>
-    <!-- <div class="flex items-center space-x-2 justify-center mb-1 mt-2">
-      <span class="text-xs text-gray-400">We use the Meta Pixel to show you relevant ads on Facebook/Instagram based on your visits here.</span>
-    </div> -->
-    <div class="flex items-center space-x-2 justify-center mb-1 mt-2">
-        <h1 class="max-w-2xl mx-auto">{<a href="https://livewellrtc.com/privacy-policy/" rel="noopener noreferrer" target="_blank">{props.privacyPolicy}</a>}</h1>
-      </div>
   </div>
 </div>

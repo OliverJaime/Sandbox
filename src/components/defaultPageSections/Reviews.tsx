@@ -27,7 +27,7 @@ type Review = {
 export default function Reviews(props: ReviewsProps) {
   return (
 
-    <div id="reviews" className="bg-brand-secondary py-10">
+    <div id="reviews" className="bg-#00000 py-10">
       <div className="md:flex md:items-center md:container space-y-4">
         <div className="md:w-1/3 flex flex-col items-center space-y-2">
           <p className="font-bold text-2xl leading-none">{props.overall}</p>

@@ -1,0 +1,89 @@
+{
+  "heading": "Media Coverage",
+  "subheading": "Explore recent RPT in the news segments showcasing our work and impact in the industry.",
+  "backgroundClass": "bg-gray-50",
+  "articles": [
+    {
+      "logo": "/img/logo-crains.png",
+      "logoAlt": "Crain's Detroit Business",
+      "title": "Crain's Detroit Business Podcast Feature",
+      "description": "Our team was featured on Crain's Detroit Business podcast, discussing essential factors to consider when selecting the right space for your small business. Gain expert insights to help you make informed decisions for your business's growth and success.",
+      "linkText": "Listen Now",
+      "linkUrl": "https://www.crainsdetroit.com/podcasts",
+      "category": "Podcast"
+    },
+    {
+      "logo": "/img/logo-hour.png",
+      "logoAlt": "Hour Detroit Magazine",
+      "title": "Hour Detroit Feature 2022",
+      "description": "Our Robotic Precision Therapy Clinic was highlighted in a dedicated article on Hour Detroit, spotlighting our advanced robotic therapy solutions and commitment to patient-focused pain relief.",
+      "linkText": "Read More",
+      "linkUrl": "https://www.hourdetroit.com",
+       "category": "Print"
+    },
+    {
+      "logo": "/img/troy-times.png",
+      "logoAlt": "Troy Times",
+      "title": "Troy Times – C & G Newspapers (July 2025)",
+      "description": "Robotic Precision Therapy Clinic was featured in the July 2025 edition of the Troy Times by C & G Newspapers. This article highlights our innovative use of the RX2600 robotic system, showcasing how our clinic delivers effective, lasting solutions for sciatica back pain.",
+      "linkText": "Read the feature in Troy Times",
+      "linkUrl": "#",
+       "category": "Print"
+    },
+    {
+      "logo": "/img/Logo-C-G-Newspapers.png",
+      "logoAlt": "The Eagle",
+      "title": "The Eagle – C & G Newspapers (July 2025)",
+      "description": "RPT Clinic was featured on page 17 of the July 2025 edition of The Eagle, published by C & G Newspapers. This spotlight emphasizes our clinic's advanced robotic therapy services and highlights how our innovative RX2600 technology is helping the Metro Detroit community.",
+      "linkText": "Read More",
+      "linkUrl": "#",
+       "category": "Print"
+    },
+    {
+      "logo": "/img/logo-hour.png",
+      "logoAlt": "Hour Detroit Health Guide",
+      "title": "Hour Detroit Health Guide 2025",
+      "description": "Our Robotic Precision Therapy clinic was featured with a prominently placed ad on the very first page of the 2025 Hour Detroit Health Guide, highlighting our commitment to excellence in patient care.",
+      "linkText": "Read More",
+      "linkUrl": "https://www.hourdetroit.com",
+       "category": "Online"
+    },
+    {
+      "logo": "/img/Logo-C-G-Newspapers.png",
+      "logoAlt": "C&G News",
+      "title": "C&G News – Birmingham-Bloomfield Eagle (May 2025)",
+      "description": "Our clinic and the innovative RX2600 robotic therapy were showcased in C&G's 'Spotlight on Health' feature, titled Sciatica Pain Doesn't Stand a Chance: The Robot Helping Metro Detroit Heal.",
+      "linkText": "Read More",
+      "linkUrl": "#",
+       "category": "Print"
+    },
+    {
+  "logo": "/img/logo-fox2.jpg",
+  "logoAlt": "Fox 2 News Detroit",
+  "title": "Fox 2 News Morning Interview - Robotic Precision Therapy",
+  "description": "Dr. Colin Elkins appeared live on WJBK Fox 2 News to demonstrate Robotic Precision Therapy and explain how this innovative treatment helps patients dealing with chronic pain.",
+  "linkText": "Watch Interview",
+  "linkUrl": "https://www.youtube.com/watch?v=60EuoVb8ekg",
+  "category": "TV"
+},
+    {
+      "logo": "/img/logo-abc7.png",
+      "logoAlt": "WXYZ Channel 7 Detroit",
+      "title": "Channel 7 Detroit Feature - Advanced Pain Relief Technology",
+      "description": "WXYZ Channel 7 Detroit highlighted Robotic Precision Therapy as an innovative solution for pain management in Metro Detroit. The segment explored how RPT uses precise, targeted pressure to address chronic pain conditions.",
+      "linkText": "Watch Segment",
+      "linkUrl": "https://www.youtube.com/watch?v=CYvqk5u6xeE",
+      "category": "TV"
+    },
+    {
+      "logo": "/img/logo-wmyd.png",
+      "logoAlt": "WMYD TV 20 News",
+      "title": "TV 20 News Coverage - Breakthrough Therapy for Chronic Pain",
+      "description": "WMYD TV 20 News featured RPT Clinic's groundbreaking approach to treating chronic pain and muscle tension. The December 2021 segment showcased how Robotic Precision Therapy is helping patients in Southeast Michigan find relief from conditions.",
+      "linkText": "Watch Coverage",
+      "linkUrl": "https://www.youtube.com/watch?v=gPAx-iMBO7w",
+      "category": "TV"
+    }
+
+  ]
+}
