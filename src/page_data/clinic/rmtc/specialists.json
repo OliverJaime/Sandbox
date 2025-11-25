@@ -1,0 +1,35 @@
+{
+  "headline": "Meet our Specialists",
+  "largescreenslides": 3,
+  "specialists": [
+    {
+      "headshot": "/img/headshot-lauren.png",
+      "name": "Dr. Lauren Michon",
+      "cert": "PT, DPT, CIDN, RPT",
+      "desc": "Lauren is passionate about helping patients improve their quality of life and continue pursuing joyful activities. Lauren is certified in advanced Integrative Dry Needling (CIDN), hawkgrips (IASTM), kinesiotaping, and cupping.",
+      "alt": "Dr. Lauren Michon - PT, DPT, CIDN, RPT"
+    },
+
+    {
+      "headshot": "/img/headshot-rosenburg.png",
+      "name": "Mike Rosenburg",
+      "cert": "PTA, RPT",
+      "desc": "As an NCAA athlete who faced injury challenges, Mike understands the frustration of chronic pain.  Over 8 years, he's tailored his approach ensuring patients lead a pain-free life without surgeries or medications.",
+      "alt": "Mike Rosenburg - PTA, RPT"
+    },
+    {
+      "headshot": "/img/headshot-blankenship.png",
+      "name": "Ben Blankenship",
+      "cert": "CNMT, RPT",
+      "desc": "Ben, founder of RPT Clinic, once grappled with severe lower back pain.  From athlete with lumbar pain to discovering RPT's life-changing results, he's committed to providing others his breakthrough non-invastive therapy.",
+      "alt": "Ben Blankenship - CNMT, RPT"
+    },
+     {
+      "headshot": "/img/Jack.png",
+      "name": "Dr. Jack Cygan",
+      "cert": "BS, DC, RPT",
+      "desc": "Jack earned his Bachelor of Science in Biology from the University of Illinois and his Doctorate of Physical Therapy from Rosalind Franklin University of Medicine. He is also trained in Integrative Dry Needling (IDN) and cupping.",
+      "alt": "Dr. Jack Cygan - BS, DC, RPT"
+    }
+  ]
+}
