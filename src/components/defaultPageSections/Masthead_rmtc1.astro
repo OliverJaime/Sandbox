@@ -1,0 +1,220 @@
+---
+interface Props {
+  logo: string;
+  star: string;
+  contact: string;
+  headline: string;
+  subhead: string;
+  subhead2: string;
+  subhead3: string;
+  subhead4: string;
+  cta: string;
+  ctaurl: string;
+  ctabuttonclass: string;
+  videourl?: string; // Optional video URL
+}
+
+const props = Astro.props;
+---
+
+<!-- Masthead container -->
+<div id="dynamicBackground" class="bg-mastheadbg-mobile md:bg-mastheadbg bg-no-repeat md:bg-center bg-mobile-custom md:bg-desktop-custom bg-custom-mobile-focus">
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmContent = urlParams.get('utm_content');
+      let bgClass = 'bg-mastheadbg';
+
+      // Fetch the dynamicHeadline elements
+      const headlineElement = document.getElementById('dynamicHeadline');
+      const headlineElement2 = document.getElementById('dynamicHeadline2');
+      const subHeadSpan = document.getElementById('keyword-span');
+      const subHeadSpan2 = document.getElementById('keyword-span2');
+
+      // Set the headline text based on utm_content
+      if (utmContent === 'sciatica') {
+        headlineElement.textContent = 'Sciatica Pain Relief';
+        headlineElement2.textContent = 'Sciatica Pain Relief';
+        subHeadSpan.textContent = 'to resolve your sciatica.';
+        subHeadSpan2.textContent = 'to resolve your sciatica.';
+      }
+
+      if (utmContent === 'lower_back') {
+        headlineElement.textContent = 'Lower Back Pain Relief';
+        headlineElement2.textContent = 'Lower Back Pain Relief';
+        subHeadSpan.textContent = 'to resolve your lower back pain.';
+        subHeadSpan2.textContent = 'to resolve your lower back pain.';
+      }
+
+      if (utmContent === 'herniated_disc') {
+        headlineElement.textContent = 'Herniated Disc Relief';
+        headlineElement2.textContent = 'Herniated Disc Relief';
+        subHeadSpan.textContent = 'to resolve your herniated disc.';
+        subHeadSpan2.textContent = 'to resolve your herniated disc.';
+      }
+
+      if (utmContent === 'bulging_disc') {
+        headlineElement.textContent = 'Bulging Disc Relief';
+        headlineElement2.textContent = 'Bulging Disc Relief';
+        subHeadSpan.textContent = 'to resolve your bulging disc.';
+        subHeadSpan2.textContent = 'to resolve your bulging disc.';
+      }
+
+      if (utmContent === 'piriformis') {
+        headlineElement.textContent = 'Piriformis Pain Relief';
+        headlineElement2.textContent = 'Piriformis Pain Relief';
+        subHeadSpan.textContent = 'to resolve your piriformis pain.';
+        subHeadSpan2.textContent = 'to resolve your piriformis pain.';
+      }
+
+      // Apply the determined background class
+      document.getElementById('dynamicBackground').classList.add(bgClass);
+    });
+  </script>
+
+  <!-- Top Header with Logo and Contact -->
+  <div class="flex justify-between items-center mb-8 bg-black">
+    <img src={props.logo} alt="Clinic Logo" class="w-[150px] h-auto mt-4 mb-3 bg-black" />
+    <div class="text-xs text-brand-secondary font-bold text-right mt-4 bg-black">
+      <p style="margin-right: 1em;">{props.contact}</p>
+      <p style="margin-right: 1em;" class="text-center">3250 W. Big Beaver Rd. Troy, Mi</p>
+      <p style="margin-right: 1em;" class="text-right">Suite 426</p>
+    </div>
+  </div>
+
+  <!-- Main Masthead Content Area -->
+  <div style="margin-top: -32px;" class="container bg-black/25 md:bg-transparent min-h-mastheadmobile md:min-h-screen flex flex-col justify-stretch">
+    
+    <!-- Content Grid: Text on Left, Video on Right (Desktop) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-8 md:py-0">
+      
+      <!-- LEFT COLUMN: Text Content -->
+      <div id="start" class="flex flex-col justify-center text-white space-y-4 md:space-y-6">
+        
+        <!-- Headline - Mobile -->
+        <h1 id="dynamicHeadline" class="md:hidden text-center font-bold text-4xl masthead-text">
+          {props.headline}
+        </h1>
+
+        <!-- Headline - Desktop -->
+        <h1 id="dynamicHeadline2" class="hidden md:block text-left font-bold text-4xl md:text-5xl masthead-text">
+          {props.headline}
+        </h1>
+
+        <!-- Subhead - Mobile -->
+        <h2 class="text-center md:hidden text-base masthead-text" set:html={props.subhead}></h2>
+
+        <!-- Subhead - Desktop -->
+        <h2 class="hidden md:block text-left text-xl masthead-text" set:html={props.subhead}></h2>
+
+        <!-- Additional Info - Mobile -->
+        <h3 class="text-center md:hidden text-base masthead-text">
+          <span>Newly Released. FDA-Registered. Now In Michigan!</span><br />
+          <span>Discover the <span class="font-bold">easiest, most comfortable way </span> <span id="keyword-span">to resolve your sciatica.</span></span><br />
+          <div class="flex items-center justify-center mt-2">
+            <img class="w-[80px] mr-2" src={props.star} alt="5-star reviews" />
+            <span class="text-yellow-500">4.9</span>
+            <span class="ml-2">Reviews Nationwide</span>
+          </div>
+        </h3>
+
+        <!-- Additional Info - Desktop -->
+        <h3 class="hidden md:block text-left text-base masthead-text">
+          <span>Newly Released. FDA-Registered. Now In Michigan!</span><br />
+          <span>Discover the <span class="font-bold">easiest, most comfortable way </span> <span id="keyword-span2">to resolve your sciatica.</span></span><br />
+          <div class="flex items-center mt-2">
+            <img class="w-[80px] mr-2" src={props.star} alt="5-star reviews" />
+            <span class="text-yellow-500">4.9</span>
+            <span class="ml-2">100's of 5-star Reviews Nationwide</span>
+          </div>
+        </h3>
+
+        <!-- CTA Button -->
+        <a href={props.ctaurl} id="btn-CTA1" class={props.ctabuttonclass + " text-center md:text-left inline-block"}>
+          {props.cta}
+        </a>
+
+        <!-- Free Consultation Text - Mobile -->
+        <h3 class="md:hidden text-center text-sm masthead-text font">
+          <span class="text-sky-400 font-bold">FREE </span><span class="font-bold">15 minute phone consultation</span><br />
+        </h3>
+
+        <!-- Free Consultation Text - Desktop -->
+        <h3 class="hidden md:block text-left text-sm masthead-text font">
+          <span class="text-sky-400 font-bold">FREE </span><span class="font-bold">15 minute phone consultation</span><br />
+        </h3>
+
+        <!-- Disclaimer - Mobile -->
+        <h3 class="md:hidden text-center text-xs masthead-text">
+          <span class="text-xs italic">*Results may vary. Most patients feel some pain relief after the first session and many achieve full pain relief within 4 - 6 sessions.</span><br />
+        </h3>
+
+        <!-- Disclaimer - Desktop -->
+        <h3 class="hidden md:block text-left text-xs masthead-text">
+          <span class="text-xs italic">*Results may vary. Most patients feel some pain relief after the first session</span><br />
+          <span class="text-xs italic">and many achieve full pain relief within 4 - 6 sessions.</span>
+        </h3>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Video Player -->
+      <div class="flex items-center justify-center md:justify-end">
+        <div class="w-full max-w-md md:max-w-lg">
+          <!-- Video Player -->
+          <div class="relative rounded-lg overflow-hidden shadow-2xl">
+            <video 
+              class="w-full h-auto rounded-lg"
+              controls
+              poster="/img/video-thumbnail.jpg"
+              preload="metadata"
+            >
+              <source src="/videos/Video-Robot Steps.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          
+          <!-- Optional: Video Caption -->
+          <p class="text-center text-white text-sm mt-3 masthead-text">
+            See how RPT works in under 1 minute
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* Video player styling */
+  video {
+    background: #000;
+  }
+
+  video::-webkit-media-controls-panel {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Optional: Custom play button overlay */
+  .video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(14, 165, 233, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .video-overlay:hover {
+    background: rgba(14, 165, 233, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+</style>

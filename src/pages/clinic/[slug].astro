@@ -11,6 +11,8 @@ import Location from "../../components/defaultPageSections/Location.astro";
 import ContactForm from "../../components/defaultPageSections/ContactForm.astro";
 import Footer from "../../components/defaultPageSections/Footer.astro";
 import Treatment from "../../components/defaultPageSections/Treatment.astro";
+import MediaCoverage from "../../components/defaultPageSections/MediaCoverage.astro";
+import FloatingNav from "../../components/FloatingNav.astro";
 
 import { readdirSync, existsSync, readFileSync } from "fs";
 import * as process from "process";
@@ -55,14 +57,15 @@ export async function getStaticPaths() {
         seo: getDataOrDefault("seo", folderName),
         contactinfo: getDataOrDefault("contactinfo", folderName),
         masthead: getDataOrDefault("masthead", folderName),
+        reviews: getDataOrDefault("reviews", folderName),
         treatpain: getDataOrDefault("treatpain", folderName),
         logos: getDataOrDefault("logos", folderName),
         treatment: getDataOrDefault("treatment", folderName),
+        mediacoverage: getDataOrDefault("mediacoverage", folderName),
         testimonials: getDataOrDefault("testimonials", folderName),
         ourapproach: getDataOrDefault("ourapproach", folderName),
         faqs: getDataOrDefault("faqs", folderName),
         specialists: getDataOrDefault("specialists", folderName),
-        reviews: getDataOrDefault("reviews", folderName),
         location: getDataOrDefault("location", folderName),
         contactform: getDataOrDefault("contactform", folderName),
         footer: getDataOrDefault("footer", folderName),
@@ -72,7 +75,7 @@ export async function getStaticPaths() {
   return returnObject;
 }
 
-const { seo, contactinfo, masthead, treatpain, logos, treatment, testimonials, ourapproach, faqs, specialists, reviews, location, contactform, footer } = Astro.props;
+const { seo, contactinfo, masthead, treatpain, logos, treatment, mediacoverage, testimonials, ourapproach, faqs, specialists, reviews, location, contactform, footer } = Astro.props;
 
 let Masthead;
 let TreatPain;
@@ -88,30 +91,32 @@ try {
   TreatPain = (await import("../../components/defaultPageSections/TreatPain.astro")).default;
 }
 
-const isLivew = slug === 'livew';
-const isLivew1= slug === 'livew1';
-// const isTmax1 = slug === 'tmax1';
-// const isTmax = slug === 'tmax';
+const isRmtc = slug === 'rmtc';
+const isRmtc1 = slug === 'rmtc1';
 
-// Override background class for Logos component
+
 const logosProps = {
   ...logos,
-  backgroundclass: isLivew1 ? 'bg-#E9E9E9 pb-10' : logos.backgroundclass,
+  backgroundclass: isRmtc1 ? 'bg-#E9E9E9 pb-10' : logos.backgroundclass,
 };
 ---
 
 <Layout title={seo.title} desc={seo.desc}>
+  <FloatingNav />
+  
+  <!-- Rest of your components -->
   <MobileContactBar {...contactinfo} />
   <Masthead {...masthead} />
-  <TreatPain {...treatpain} />
-  {isLivew && <Logos {...logosProps} client:load />}
-  {isLivew && <Treatment {...treatment} />}  
-  {!isLivew && <Logos {...logosProps} client:load />}
+  {isRmtc && <Treatment {...treatment} />} 
+  <Reviews {...reviews} client:load />
+  <TreatPain {...treatpain} /> 
+  <MediaCoverage {...mediacoverage} />
+  {isRmtc && <Logos {...logosProps} client:load />}
+  {!isRmtc && <Logos {...logosProps} client:load />}
   <Testimonials {...testimonials} client:load />
   <OurApproach {...ourapproach} />
   <FAQ {...faqs} />
   <OurSpecialists {...specialists} client:load />
-  <Reviews {...reviews} client:load />
   <Location {...location} />
   <ContactForm {...contactform} />
   <Footer {...footer} />

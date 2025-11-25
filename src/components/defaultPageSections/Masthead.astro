@@ -1,7 +1,8 @@
 ---
+import ParticleBackground from '../effects/ParticleBackground';
+
 interface Props {
   logo: string;
-  mobileLogo: string;
   star: string;
   contact: string;
   headline: string;
@@ -16,107 +17,238 @@ interface Props {
   pillicon: string;
   needleicon: string;
   surgeryicon: string;
-  carouselImages: string[];   // NEW
+  videourl?: string;
 }
 
-const {
-  logo, mobileLogo, contact, 
-  pillicon, needleicon, surgeryicon,
-  carouselImages
-} = Astro.props;
+const props = Astro.props;
 ---
 
-<!-- ============================================= -->
-<!-- 1. Masthead container (your original background) -->
-<div
-  id="dynamicBackground"
-  class="relative overflow-hidden bg-no-repeat md:bg-center bg-mobile-custom md:bg-desktop-custom bg-custom-mobile-focus"
->
-  <!-- ------------------------------------------------ -->
-  <!-- 2. FULL-SCREEN CAROUSEL (one image at a time) -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <div class="carousel-track">
-      <!-- One copy is enough — we animate by full viewport width -->
-      {carouselImages.map(src => (
-        <img src={src} alt="" class="carousel-img" loading="lazy" />
-      ))}
+<div id="dynamicBackground" class="animated-gradient-bg">
+  <!-- Three.js Particle Background -->
+  <ParticleBackground 
+    client:load
+    particleCount={1000}
+    particleColor="#0ea5e9"
+    particleSize={1.5}
+    animationSpeed={0.00000001}
+  />
+
+  <!-- Combined dynamic script for headline and video -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmContent = urlParams.get('utm_content');
+      
+      // Dynamic headlines
+      const headlines = {
+        'sciatica': 'Sciatica Pain Relief',
+        'lower_back': 'Lower Back Pain Relief',
+        'herniated_disc': 'Herniated Disc Relief',
+        'bulging_disc': 'Bulging Disc Relief',
+        'piriformis': 'Piriformis Pain Relief',
+        'trendel_gait': 'Trendelenburg Gait Relief',
+        'neck_pain': 'Neck Pain Relief'
+      };
+      
+      if (utmContent && headlines[utmContent]) {
+        const headline1 = document.getElementById('dynamicHeadline');
+        const headline2 = document.getElementById('dynamicHeadline2');
+        if (headline1) headline1.textContent = headlines[utmContent];
+        if (headline2) headline2.textContent = headlines[utmContent];
+      }
+
+      // Dynamic video swap
+      const vimPlayer = document.getElementById('vim_player_1');
+      if (vimPlayer && utmContent) {
+        const videoMap = {
+          'lower_back': {
+            src: 'https://player.vimeo.com/video/1098293206',
+            title: 'Begin Backpain Relief Journey'
+          },
+          'sciatica': {
+            src: 'https://player.vimeo.com/video/1113325317',
+            title: 'Sciatica Pain Intro Video'
+          },
+          'herniated_disc': {
+            src: 'https://player.vimeo.com/video/1113718886',
+            title: 'Begin Herniated Disc Relief Journey'
+          },
+          'bulging_disc': {
+            src: 'https://player.vimeo.com/video/1113718977',
+            title: 'Begin Bulging Disc Relief Journey'
+          },
+          'piriformis': {
+            src: 'https://player.vimeo.com/video/1116252675',
+            title: 'Begin Piriformis Relief Journey'
+          },
+          'trendel_gait': {
+            src: 'https://player.vimeo.com/video/1113320231',
+            title: 'Begin Trendelenburg Gait Relief Journey'
+          },
+          'neck_pain': {
+            src: 'https://player.vimeo.com/video/1088080472',
+            title: 'Begin Neck Pain Relief Journey'
+          }
+        };
+
+        if (videoMap[utmContent]) {
+          vimPlayer.src = videoMap[utmContent].src;
+          vimPlayer.title = videoMap[utmContent].title;
+        }
+      }
+    });
+  </script>
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-8 bg-black relative z-10">
+    <img src={props.logo} alt="Clinic Logo" class="w-[60px] h-auto ml-3 mt-3 mb-3" />
+    <div class="text-xs text-brand-secondary font-bold text-right mt-4 mr-4">
+      <p>{props.contact}</p>
+      <p>3250 W. Big Beaver Rd. Troy, MI</p>
+      <p>Suite 426</p>
     </div>
   </div>
 
-  <!-- ------------------------------------------------ -->
-  <!-- 3. Your original content (unchanged) -->
-  <div class="relative z-10 flex justify-between items-center mb-8 bg-black">
-    <img src={logo} alt="Clinic Logo" class="w-[200px] h-auto ml-6 mt-3 mb-3 bg-black hidden md:block" />
-    <img src={mobileLogo} alt="Mobile Clinic Logo" class="w-[50px] h-auto ml-3 mt-3 mb-3 bg-black md:hidden" />
-    <div class="text-xs text-brand-secondary font-bold text-right mt-4 bg-black">
-      <p style="margin-right: 1em;"><a href="tel:+12487442978">{contact}</a></p>
-      <p style="margin-right: 1em;" class="text-center">7138 Sashabaw Road</p>
-      <p style="margin-right: 1em;" class="text-right mb-3">Clarkston, MI 48348</p>
-    </div>
-  </div>
+  <!-- Main Content -->
+  <div class="container min-h-[36rem] md:min-h-screen flex flex-col justify-stretch relative z-10" style="margin-top: -30px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start md:items-center flex-grow">
+      
+      <!-- Left Column: Text -->
+      <div class="flex flex-col justify-center text-white space-y-4">
 
-  <!-- ------------------------------------------------ -->
-  <!-- 4. Rest of your markup (copy-paste exactly as you had it) -->
-  <div style="margin-top: -32px;" class="container bg-transparent md:bg-transparent min-h-[36rem] md:min-h-screen flex flex-col justify-stretch">
-    <div id="start" class="flex flex-col grow justify-around md:justify-center items-start md:items-start text-white md:space-y-8">
-      <!-- ... all your existing h1, h2, CTA, etc. ... -->
-      <!-- (just keep everything inside this div exactly as before) -->
+        <!-- Mobile Rating -->
+        <div class="md:hidden text-center text-sm">
+          <div class="flex items-center justify-center mb-2">
+            <span class="text-yellow-500 font-bold">4.9</span>
+            <img class="w-[15px] ml-1" src={props.star} alt="5-star reviews" />
+            <span class="ml-2 text-yellow-500 font-bold">471+ 5-star Reviews Nationwide</span>
+          </div>
+          <span class="font-bold">Robotic Precision Therapy</span>
+        </div>
+        
+        <!-- Headline -->
+        <h1 id="dynamicHeadline" class="md:hidden mt-6 text-left font-bold text-4xl">{props.headline}</h1>
+        <h1 id="dynamicHeadline2" class="hidden md:block mt-8 md:mt-10 text-left font-bold text-4xl md:text-5xl">{props.headline}</h1>
+        
+        <!-- Mobile Subheading -->
+        <div class="md:hidden w-full bg-black/25 -mx-4 px-4 py-2">
+          <h2 class="text-left text-base">
+            Pain Resolution 4 to 6 Sessions*<br />
+            No surgery. No Meds. No Injections.
+          </h2>
+        </div>
+
+        <!-- Desktop Rating -->
+        <div class="hidden md:block text-base">
+          <div class="flex items-center mb-2">
+            <span class="text-yellow-500 font-bold">4.9</span>
+            <img class="w-[15px] ml-1" src={props.star} alt="5-star reviews" />
+            <span class="ml-2 text-yellow-500 font-bold">471+ 5-star Reviews Nationwide</span>
+          </div>
+          <span class="font-bold"> Proven pain relief therapy to relieve sciatic nerve compression</span>
+        </div>
+
+        <!-- CTA Buttons -->
+         <a
+          href="#contact"
+          id="btn-CTA3"
+          class={props.ctabuttonclass + " inline-block w-fit px-6 py-3"}
+          style="padding-right: 1.5rem; padding-left: 1.5rem;"  /* ensures even left/right */
+        >
+          {props.cta}
+        </a>
+
+        <a
+          href={props.ctaurl}
+          id="btn-CTA3-mobile"
+          target="_blank"
+          rel="noopener noreferrer"
+          class={props.ctabuttonclassMobile + " inline-block w-fit max-w-sm"}
+        >
+          {props.cta}
+        </a>
+
+        <!-- Free Consultation -->
+        <p class="text-sm">
+          <span class="text-sky-400 font-bold">FREE</span>
+          <span class="font-bold"> 15 minute phone consultation</span>
+        </p>
+
+      </div>
+
+      <!-- Right Column: Vimeo Video -->
+          <div class="flex items-center justify-center md:justify-end mt-8 md:mt-0">
+            <div class="w-full max-w-md md:max-w-xl lg:max-w-2xl">
+          <div class="relative rounded-xl overflow-hidden shadow-2xl bg-black" style="aspect-ratio: 16/9;">
+            <iframe 
+              src="https://player.vimeo.com/video/1113325317" 
+              title="Sciatica Pain Intro Video" 
+              id="vim_player_1" 
+              class="w-full h-full absolute inset-0"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <p class="text-center text-white text-sm mt-3 font-semibold">
+            See How RPT Works in 60 Seconds
+          </p>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Bottom icons, disclaimer, etc. -->
-    <div class="hidden md:flex justify-around text-white font-semibold text-4xl pb-2">
+    <!-- Bottom Section -->
+    <div class="hidden md:flex justify-around text-white font-semibold text-4xl pb-2 mt-auto">
       <h3>No Meds</h3>
       <h3>No Needles</h3>
       <h3>No Surgery</h3>
     </div>
-    <div class="hidden md:flex justify-around mb-6">
-      <img src={pillicon} class="w-30 h-11" alt="No pills necessary for treatment"/>
-      <img src={needleicon} class="w-30 h-11" alt="No needles or injections necessary for treatment"/>
-      <img src={surgeryicon} class="w-30 h-11" alt="No surgery necessary for treatment"/>
-    </div>
-    <br>
-    <h3 style="margin-top: -2em;" class="hidden md:block md:text-center text-xs masthead-text mt-2 text-white mb-2">
-      <span class="text-xs italic">*Results may vary. Most patients experience lasting relief in just 6 sessions or less. Those suffering for many years may take longer.</span>
-    </h3>
+
+    <!-- Disclaimer -->
+    <p class="hidden md:block text-center text-xs text-white mb-2 italic">
+      *Results may vary. Most patients experience lasting relief in just 6 sessions or less. Those suffering for many years may take longer.
+    </p>
   </div>
 </div>
 
-<!-- ============================================= -->
-<!-- 5. Carousel CSS – fixed speed + uniform image size -->
 <style>
-  .carousel-track {
-    display: flex;
-    width: max-content;
-    animation: scroll-full 15s linear infinite;
+  /* Background Gradient */
+  .animated-gradient-bg {
+    position: relative;
+    overflow: hidden;
+    background: #0a1628;
   }
 
-  .carousel-img {
-    width: 100vw;              /* Full viewport width */
-    height: 100%;              /* Full masthead height */
-    object-fit: cover;         /* Crop to fill, no distortion */
-    flex-shrink: 0;
+  .animated-gradient-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(14, 50, 109, 0.6) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(12, 126, 179, 0.5) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(6, 75, 87, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 60% 90%, rgba(12, 109, 98, 0.5) 0%, transparent 50%),
+      radial-gradient(circle at 90% 30%, rgba(8, 178, 164, 0.4) 0%, transparent 50%);
+    animation: meshMove 15s ease-in-out infinite;
+    filter: blur(60px);
   }
 
-  @keyframes scroll-full {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+  .animated-gradient-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 31, 78, 0.3) 0%, rgba(9, 90, 110, 0.2) 50%, rgba(12, 107, 96, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
   }
 
-  /* Pause on hover */
-  #dynamicBackground:hover .carousel-track {
-    animation-play-state: paused;
+  @keyframes meshMove {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-5%, 5%) scale(1.1); }
+    66% { transform: translate(25%, -15%) scale(0.95); }
   }
 </style>
-
-<!-- ============================================= -->
-<!-- 6. Your existing UTM script (unchanged) -->
-<script type="module">
-  document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const utmContent = urlParams.get('utm_content');
-    const headlineElement = document.getElementById('dynamicHeadline');
-    const headlineElement2 = document.getElementById('dynamicHeadline2');
-
-    // ... all your existing `if (utmContent === ...)` blocks ...
-  });
-</script>
