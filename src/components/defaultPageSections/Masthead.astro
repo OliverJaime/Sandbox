@@ -206,7 +206,7 @@ const props = Astro.props;
         
         <!-- Mobile Subheading -->
         <div class="md:hidden w-full bg-black/25 -mx-4 px-4 py-2">
-          <h2 class="text-left text-base">
+          <h2 class="text-left text-center md:text-left text-base">
             Pain Resolution 4 to 6 Sessions*<br />
             No surgery. No Meds. No Injections.
           </h2>
@@ -224,7 +224,7 @@ const props = Astro.props;
         </div>
 
 
-        <!-- CTA Buttons -->
+       <!-- Desktop CTA (unchanged from your original) -->
         <button
           type="button"
           id="btn-CTA3"
@@ -234,21 +234,25 @@ const props = Astro.props;
           {props.cta}
         </button>
 
-
+        <!-- Mobile CTA only -->
         <button
           type="button"
           id="btn-CTA3-mobile"
-          class={props.ctabuttonclassMobile + " inline-block w-fit max-w-sm"}
+          class={
+            props.ctabuttonclassMobile +
+            " inline-block w-full max-w-sm mx-auto mt-3 md:hidden"
+          }
         >
           {props.cta}
         </button>
 
 
         <!-- Free Consultation -->
-        <p class="text-sm">
+        <p class="text-sm text-center md:text-left">
           <span class="text-sky-400 font-bold">FREE</span>
           <span class="font-bold"> 15 minute phone consultation</span>
         </p>
+
 
 
       </div>

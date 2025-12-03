@@ -179,7 +179,7 @@ const carouselImages = props.images || [
     }
   </style>
 
-      <div id="tech" class="container relative z-10 py-12 max-w-4xl md:max-w-5xl mx-auto">
+      <div id="tech" class="container relative z-10 py-12 max-w-4xl md:max-w-5xl mx-auto px-4 md:px-0">
     <!-- Main Headline -->
     <h2 class="section-headline text-2xl md:text-3xl font-bold text-blue-950 mb-8">
       {props.headlineMain}
@@ -231,8 +231,8 @@ const carouselImages = props.images || [
       </div>
 
       <!-- Right Column: Image Carousel -->
-      <div class="hidden md:block relative">
-        <div class="carousel-container">
+      <div class="mt-8 md:mt-0 flex justify-center md:block relative">
+        <div class="carousel-container w-full max-w-xs sm:max-w-sm md:max-w-md">
           <!-- Carousel slides -->
           <div id="image-carousel" class="w-full h-full">
             {carouselImages.map((image, index) => (
@@ -261,6 +261,7 @@ const carouselImages = props.images || [
           </div>
         </div>
       </div>
+
 
     </div>
   </div>
