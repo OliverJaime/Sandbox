@@ -34,13 +34,20 @@ const groupedArticles = {
 };
 ---
 
-<section id="media" class={`py-16 ${backgroundClass}`}>
-  <div class="container mx-auto px-4 max-w-6xl">
+<section
+  id="media"
+  class={`py-16 ${backgroundClass} px-4 md:px-8`}
+>
+  <div class="container mx-auto max-w-6xl">
     
     <!-- Section Header -->
-    <div class="text-center mb-12">
-      <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">{heading}</h2>
-      <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">{subheading}</p>
+    <div class="text-center mb-12 px-2 sm:px-4">
+      <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        {heading}
+      </h2>
+      <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+        {subheading}
+      </p>
     </div>
 
     <!-- Tab Navigation (IGN/Aescape Style) -->
@@ -79,7 +86,7 @@ const groupedArticles = {
         >
           <div class="space-y-8">
             {groupedArticles[category].map((article) => (
-              <article class="flex flex-col md:flex-row gap-6 pb-8 border-b border-gray-200 last:border-b-0 opacity-0 slide-in">
+              <article class="flex flex-col md:flex-row gap-6 pb-8 border-b border-gray-200 last:border-b-0 opacity-0 slide-in px-1 sm:px-0">
                 
                 <!-- Left: Logo (30%) -->
                 <div class="md:w-[30%] flex items-start justify-center md:justify-start pt-2">
@@ -92,8 +99,13 @@ const groupedArticles = {
 
                 <!-- Right: Content (70%) -->
                 <div class="md:w-[70%]">
-                  <h3 class="text-2xl font-bold text-gray-900 mb-3">{article.title}</h3>
-                  <p class="text-gray-700 mb-4 leading-relaxed">{article.description}</p>
+                  <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3">
+                    {article.title}
+                  </h3>
+
+                  <p class="text-gray-700 mb-4 leading-relaxed">
+                    {article.description}
+                  </p>
                   
                   <!-- CTA Link -->
                   <a 
@@ -118,6 +130,7 @@ const groupedArticles = {
 
   </div>
 </section>
+
 
 <!-- Tab Switching Script -->
 <script>

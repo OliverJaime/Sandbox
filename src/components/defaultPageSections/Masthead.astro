@@ -1,6 +1,7 @@
 ---
 import ParticleBackground from '../effects/ParticleBackground';
 
+
 interface Props {
   logo: string;
   star: string;
@@ -18,10 +19,13 @@ interface Props {
   needleicon: string;
   surgeryicon: string;
   videourl?: string;
+  formsrc: string;
 }
+
 
 const props = Astro.props;
 ---
+
 
 <div id="dynamicBackground" class="animated-gradient-bg">
   <!-- Three.js Particle Background -->
@@ -33,7 +37,8 @@ const props = Astro.props;
     animationSpeed={0.00000001}
   />
 
-  <!-- Combined dynamic script for headline and video -->
+
+  <!-- Combined dynamic script for headline, subheading, video, and modal -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -49,13 +54,30 @@ const props = Astro.props;
         'trendel_gait': 'Trendelenburg Gait Relief',
         'neck_pain': 'Neck Pain Relief'
       };
+
+
+      // Dynamic subheadings
+      const subheadings = {
+        'sciatica': 'Proven pain relief therapy to relieve sciatic nerve compression',
+        'lower_back': 'Proven pain relief therapy to relieve lower back pain and discomfort',
+        'herniated_disc': 'Proven pain relief therapy to treat herniated disc symptoms',
+        'bulging_disc': 'Proven pain relief therapy to address bulging disc pain',
+        'piriformis': 'Proven pain relief therapy to relieve piriformis syndrome',
+        'trendel_gait': 'Proven pain relief therapy to address trendelenburg gait issues',
+        'neck_pain': 'Proven pain relief therapy to relieve chronic neck pain'
+      };
       
+      // Update headlines and subheading
       if (utmContent && headlines[utmContent]) {
         const headline1 = document.getElementById('dynamicHeadline');
         const headline2 = document.getElementById('dynamicHeadline2');
+        const subheading = document.getElementById('dynamicSubheading');
+        
         if (headline1) headline1.textContent = headlines[utmContent];
         if (headline2) headline2.textContent = headlines[utmContent];
+        if (subheading) subheading.textContent = subheadings[utmContent];
       }
+
 
       // Dynamic video swap
       const vimPlayer = document.getElementById('vim_player_1');
@@ -91,13 +113,62 @@ const props = Astro.props;
           }
         };
 
+
         if (videoMap[utmContent]) {
           vimPlayer.src = videoMap[utmContent].src;
           vimPlayer.title = videoMap[utmContent].title;
         }
       }
+
+
+      // Modal functionality
+      const modal = document.getElementById('appointmentModal');
+      const btnCTA3 = document.getElementById('btn-CTA3');
+      const btnCTA3Mobile = document.getElementById('btn-CTA3-mobile');
+      const closeModalBtn = document.querySelector('.modal-close');
+
+      // Open modal function
+      function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      }
+
+      // Close modal function
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+
+      // Event listeners
+      if (btnCTA3) {
+        btnCTA3.addEventListener('click', openModal);
+      }
+
+      if (btnCTA3Mobile) {
+        btnCTA3Mobile.addEventListener('click', openModal);
+      }
+
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+      }
+
+      // Close modal when clicking outside
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
     });
   </script>
+
+
 
   <!-- Header -->
   <div class="flex justify-between items-center mb-8 bg-black relative z-10">
@@ -109,6 +180,7 @@ const props = Astro.props;
     </div>
   </div>
 
+
   <!-- Main Content -->
   <div class="container min-h-[36rem] md:min-h-screen flex flex-col justify-stretch relative z-10" style="margin-top: -30px;">
     
@@ -117,12 +189,13 @@ const props = Astro.props;
       <!-- Left Column: Text -->
       <div class="flex flex-col justify-center text-white space-y-4">
 
+
         <!-- Mobile Rating -->
         <div class="md:hidden text-center text-sm">
           <div class="flex items-center justify-center mb-2">
             <span class="text-yellow-500 font-bold">4.9</span>
             <img class="w-[15px] ml-1" src={props.star} alt="5-star reviews" />
-            <span class="ml-2 text-yellow-500 font-bold">471+ 5-star Reviews Nationwide</span>
+            <a href="#testimonials" class="ml-2 text-yellow-500 font-bold review-link">471+ 5-star Reviews Nationwide</a>
           </div>
           <span class="font-bold">Robotic Precision Therapy</span>
         </div>
@@ -133,53 +206,61 @@ const props = Astro.props;
         
         <!-- Mobile Subheading -->
         <div class="md:hidden w-full bg-black/25 -mx-4 px-4 py-2">
-          <h2 class="text-left text-base">
+          <h2 class="text-left text-center md:text-left text-base">
             Pain Resolution 4 to 6 Sessions*<br />
             No surgery. No Meds. No Injections.
           </h2>
         </div>
+
 
         <!-- Desktop Rating -->
         <div class="hidden md:block text-base">
           <div class="flex items-center mb-2">
             <span class="text-yellow-500 font-bold">4.9</span>
             <img class="w-[15px] ml-1" src={props.star} alt="5-star reviews" />
-            <span class="ml-2 text-yellow-500 font-bold">471+ 5-star Reviews Nationwide</span>
+            <a href="#testimonials" class="ml-2 text-yellow-500 font-bold review-link">471+ 5-star Reviews Nationwide</a>
           </div>
-          <span class="font-bold"> Proven pain relief therapy to relieve sciatic nerve compression</span>
+          <span id="dynamicSubheading" class="font-bold">Proven pain relief therapy to relieve sciatic nerve compression</span>
         </div>
 
-        <!-- CTA Buttons -->
-         <a
-          href="#contact"
+
+       <!-- Desktop CTA (unchanged from your original) -->
+        <button
+          type="button"
           id="btn-CTA3"
           class={props.ctabuttonclass + " inline-block w-fit px-6 py-3"}
-          style="padding-right: 1.5rem; padding-left: 1.5rem;"  /* ensures even left/right */
+          style="padding-right: 1.5rem; padding-left: 1.5rem;"
         >
           {props.cta}
-        </a>
+        </button>
 
-        <a
-          href={props.ctaurl}
+        <!-- Mobile CTA only -->
+        <button
+          type="button"
           id="btn-CTA3-mobile"
-          target="_blank"
-          rel="noopener noreferrer"
-          class={props.ctabuttonclassMobile + " inline-block w-fit max-w-sm"}
+          class={
+            props.ctabuttonclassMobile +
+            " inline-block w-full max-w-sm mx-auto mt-3 md:hidden"
+          }
         >
           {props.cta}
-        </a>
+        </button>
+
 
         <!-- Free Consultation -->
-        <p class="text-sm">
+        <p class="text-sm text-center md:text-left">
           <span class="text-sky-400 font-bold">FREE</span>
           <span class="font-bold"> 15 minute phone consultation</span>
         </p>
 
+
+
       </div>
 
+
       <!-- Right Column: Vimeo Video -->
-          <div class="flex items-center justify-center md:justify-end mt-8 md:mt-0">
-            <div class="w-full max-w-md md:max-w-xl lg:max-w-2xl">
+      <div class="flex items-center justify-center md:justify-end mt-8 md:mt-0">
+        <div class="w-full max-w-md md:max-w-xl lg:max-w-2xl">
           <div class="relative rounded-xl overflow-hidden shadow-2xl bg-black" style="aspect-ratio: 16/9;">
             <iframe 
               src="https://player.vimeo.com/video/1113325317" 
@@ -196,7 +277,9 @@ const props = Astro.props;
         </div>
       </div>
 
+
     </div>
+
 
     <!-- Bottom Section -->
     <div class="hidden md:flex justify-around text-white font-semibold text-4xl pb-2 mt-auto">
@@ -205,12 +288,37 @@ const props = Astro.props;
       <h3>No Surgery</h3>
     </div>
 
+
     <!-- Disclaimer -->
     <p class="hidden md:block text-center text-xs text-white mb-2 italic">
       *Results may vary. Most patients experience lasting relief in just 6 sessions or less. Those suffering for many years may take longer.
     </p>
   </div>
+
+
+  <!-- Modal for CTA Form -->
+  <div id="appointmentModal" class="modal-overlay">
+    <div class="modal-container">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-content">
+        <h2 class="modal-title">Book Your Appointment</h2>
+        <div class="modal-iframe-wrapper">
+          <iframe 
+            id="ctm-form-section" 
+            class="ctm-call-widget" 
+            src={props.formsrc} 
+            style="width: 100%; min-height: 420px; border: none;" 
+            title="Book Appointment Form"
+          ></iframe>
+          <script defer async src="https://538296.tctm.co/formreactor.js"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
+
 
 <style>
   /* Background Gradient */
@@ -219,6 +327,7 @@ const props = Astro.props;
     overflow: hidden;
     background: #0a1628;
   }
+
 
   .animated-gradient-bg::before {
     content: '';
@@ -237,6 +346,7 @@ const props = Astro.props;
     filter: blur(60px);
   }
 
+
   .animated-gradient-bg::after {
     content: '';
     position: absolute;
@@ -246,9 +356,190 @@ const props = Astro.props;
     z-index: 1;
   }
 
+
   @keyframes meshMove {
     0%, 100% { transform: translate(0, 0) scale(1); }
     33% { transform: translate(-5%, 5%) scale(1.1); }
     66% { transform: translate(25%, -15%) scale(0.95); }
+  }
+
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+
+  /* Review link styling with Google gradient */
+  .review-link {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+  }
+
+
+  .review-link:hover {
+    transform: scale(1.05);
+    color: #fbbf24;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+  }
+
+
+  /* Google-branded gradient underline */
+  .review-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background: linear-gradient(
+      90deg,
+      #4285F4 0%,      /* Google Blue */
+      #EA4335 33%,     /* Google Red */
+      #FBBC04 66%,     /* Google Yellow */
+      #34A853 100%     /* Google Green */
+    );
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(66, 133, 244, 0.4);
+  }
+
+
+  .review-link:hover::after {
+    width: 100%;
+    box-shadow: 0 0 12px rgba(66, 133, 244, 0.6);
+  }
+
+
+  /* Modal Overlay with Blur */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+
+  .modal-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+  }
+
+
+  /* Modal Container */
+  .modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    background: linear-gradient(135deg, #0a1628 0%, #0b2a40 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+    animation: modalSlideIn 0.4s ease;
+    max-height: 90vh;
+    overflow: hidden;
+  }
+
+
+  @keyframes modalSlideIn {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+
+  /* Modal Close Button */
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+
+
+  .modal-close:hover {
+    background: rgba(239, 68, 68, 0.8);
+    border-color: rgba(239, 68, 68, 1);
+    transform: rotate(90deg);
+  }
+
+
+  /* Modal Content */
+  .modal-content {
+    padding: 24px;
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+
+
+  .modal-title {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    background: linear-gradient(90deg, #4A9FE5 0%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+
+  .modal-iframe-wrapper {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .modal-container {
+      width: 95%;
+      margin: 10px;
+    }
+    
+    .modal-content {
+      padding: 16px;
+    }
+    
+    .modal-title {
+      font-size: 22px;
+    }
   }
 </style>

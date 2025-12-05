@@ -23,7 +23,10 @@ export interface Hours {
 }
 
 const props = Astro.props;
-const locationsList = props.locations || [];
+const locationsList = (props.locations || []).sort((a, b) => 
+  a.name.localeCompare(b.name)
+);
+
 ---
 
 <!-- Add Roboto Font -->
@@ -85,15 +88,17 @@ const locationsList = props.locations || [];
             data-location-index={index}
             class={`${index === 0 ? 'flex' : 'hidden'} flex-col h-full animate-fadeIn`}
           >
-            <!-- Location Image (LARGER) -->
-            <div class="mb-3 rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex-shrink-0">
-              <img 
-                src={location.photo} 
-                alt={`${location.name} Clinic`} 
-                class="w-full h-56 object-cover"
-                loading={index === 0 ? 'eager' : 'lazy'}
-              />
-            </div>
+          <!-- Location Image (FULL IMAGE VISIBLE) -->
+          <div class="mb-3 rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex-shrink-0 bg-gray-900">
+            <img 
+              src={location.photo} 
+              alt={`${location.name} Clinic`} 
+              class="w-full h-56 object-contain"
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+
+
 
             <!-- Details Card (COMPACT) -->
             <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 shadow-2xl flex-1 overflow-hidden flex flex-col">
@@ -120,7 +125,7 @@ const locationsList = props.locations || [];
                 </div>
               )}
 
-              <!-- Hours (Ultra Compact) -->
+                        <!-- Hours (Ultra Compact) -->
               <div class="flex items-start gap-2.5 mb-3 pb-2.5 border-b border-white/10 flex-1 min-h-0">
                 <svg class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -138,10 +143,25 @@ const locationsList = props.locations || [];
                 </div>
               </div>
 
+
+              <!-- Directions Button (NEW) -->
+              <a 
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${location.street}, ${location.suite}, ${location.citystatezip}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-bold transition-colors shadow-lg text-base tracking-wide uppercase mb-3"
+                style="letter-spacing: 0.5px; border-radius: 4px;"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                </svg>
+                Get Directions
+              </a>
+
               <!-- Call Button (EXACT MATCH - Sharp Corners) -->
               <a 
                 href={`tel:${location.phone.replace(/\D/g, '')}`} 
-                class="call-button flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-[#4A9FE5] text-white font-bold transition-colors shadow-lg text-base tracking-wide uppercase"
+                class="call-button flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-[#4A9FE5] hover:bg-[#3a8fd5] text-white font-bold transition-colors shadow-lg text-base tracking-wide uppercase"
                 style="letter-spacing: 0.5px; border-radius: 4px;"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,6 +169,7 @@ const locationsList = props.locations || [];
                 </svg>
                 {location.phone}
               </a>
+
             </div>
           </div>
         ))}
@@ -182,6 +203,42 @@ const locationsList = props.locations || [];
   .animate-fadeIn { animation: fadeIn 0.3s ease-in-out; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   /* ...rest of your custom scrollbar and button styles... */
+
+  /* Location Image Zoom-Out Effect */
+.location-image-container {
+  cursor: pointer;
+  position: relative;
+}
+
+.location-image {
+  transition: transform 0.5s ease, filter 0.3s ease;
+  transform: scale(1);
+  will-change: transform;
+}
+
+.location-image-container:hover .location-image {
+  transform: scale(0.95);
+  filter: brightness(1.1);
+}
+
+/* Optional: Add a subtle overlay effect on hover */
+.location-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(74, 159, 229, 0) 0%, rgba(14, 165, 233, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.location-image-container:hover::after {
+  opacity: 1;
+}
+
 </style>
 <script>
   document.addEventListener('DOMContentLoaded', () => {

@@ -17,21 +17,22 @@ type VideoTestimonial = {
   embedID: string;
   buttonLabel: string;
   location: string;
-}
+};
 
 type TextTestimonial = {
   testimonial: string;
   location: string;
-}
+};
 
 // Individual Testimonial Component with Read More
 function TestimonialText({ testimonial, index }: { testimonial: string; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const CHAR_LIMIT = 200;
   const needsTruncation = testimonial.length > CHAR_LIMIT;
-  const displayText = isExpanded || !needsTruncation
-    ? testimonial
-    : testimonial.slice(0, CHAR_LIMIT) + '...';
+  const displayText =
+    isExpanded || !needsTruncation
+      ? testimonial
+      : testimonial.slice(0, CHAR_LIMIT) + '...';
 
   return (
     <div className="text-center px-4 md:px-6 opacity-0 slide-in">
@@ -66,35 +67,47 @@ function TestimonialText({ testimonial, index }: { testimonial: string; index: n
 
 export default function Testimonials(props: TestimonialsProps) {
   const [swiper, setSwiper] = useState<any>();
-  const [activeTab, setActiveTab] = useState<string>("Clarkston");
 
   // 1. Get all unique clinic location names from both text and video sources
   const uniqueLocations = Array.from(
     new Set([
-      ...props.textTestimonials.map(t => t.location),
-      ...props.videoTestimonials.map(v => v.location)
-    ])
-  ).filter(Boolean); // filter out empty string locations, if any
+      ...props.textTestimonials.map((t) => t.location),
+      ...props.videoTestimonials.map((v) => v.location),
+    ]),
+  ).filter(Boolean);
 
-  // 2. Sort them alphabetically, case-insensitive
-  const abcSorted = uniqueLocations.sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: 'base' })
-  );
+  // 2. Sort with Troy first, then Rochester, then any others alphabetically
+  const preferredOrder = ['Clarkston','Rochester','Troy'];
+
+  const sortedLocations = uniqueLocations.sort((a, b) => {
+    const ia = preferredOrder.indexOf(a);
+    const ib = preferredOrder.indexOf(b);
+
+    if (ia === -1 && ib === -1) {
+      return a.localeCompare(b, undefined, { sensitivity: 'base' });
+    }
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
 
   // 3. Add "All" at the end
-  const locations = [...abcSorted, "All"];
+  const locations = [...sortedLocations, 'All'];
 
-  // 4. Generate grouped testimonials and videos by location
+  // 4. Active tab starts as the first location (Troy)
+  const [activeTab, setActiveTab] = useState<string>(locations[0] || 'All');
+
+  // 5. Generate grouped testimonials and videos by location
   const groupedTestimonials: Record<string, TextTestimonial[]> = {};
   const groupedVideos: Record<string, VideoTestimonial[]> = {};
 
-  locations.forEach(loc => {
-    if (loc === "All") {
+  locations.forEach((loc) => {
+    if (loc === 'All') {
       groupedTestimonials[loc] = props.textTestimonials;
       groupedVideos[loc] = props.videoTestimonials;
     } else {
-      groupedTestimonials[loc] = props.textTestimonials.filter(t => t.location === loc);
-      groupedVideos[loc] = props.videoTestimonials.filter(v => v.location === loc);
+      groupedTestimonials[loc] = props.textTestimonials.filter((t) => t.location === loc);
+      groupedVideos[loc] = props.videoTestimonials.filter((v) => v.location === loc);
     }
   });
 
@@ -122,14 +135,15 @@ export default function Testimonials(props: TestimonialsProps) {
                 onClick={() => setActiveTab(location)}
                 className={`
                   px-6 py-3 font-bold text-base transition-all duration-300 whitespace-nowrap relative
-                  ${activeTab === location
-                    ? 'text-gray-900 border-b-4 border-cyan-600'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 border-b-4 border-transparent hover:border-gray-400'
+                  ${
+                    activeTab === location
+                      ? 'text-gray-900 border-b-4 border-cyan-600'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 border-b-4 border-transparent hover:border-gray-400'
                   }
                 `}
               >
                 {location}
-                {location !== "All" && (
+                {location !== 'All' && (
                   <span className="ml-2 text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">
                     {groupedTestimonials[location]?.length || 0}
                   </span>
@@ -163,17 +177,17 @@ export default function Testimonials(props: TestimonialsProps) {
                     slidesPerView: Math.min(3, groupedVideos[location].length),
                   },
                 }}
-                onSwiper={(swiper) => setSwiper(swiper)}
+                onSwiper={(swiperInstance) => setSwiper(swiperInstance)}
               >
                 {groupedVideos[location].map((VideoTestimonial, index) => (
                   <SwiperSlide key={index}>
                     <div className="px-4 pt-10 pb-2 md:pb-4">
                       <div className="relative w-full max-w-xl aspect-video mx-auto">
-                        <iframe 
-                          src={VideoTestimonial.embedURL} 
-                          title="Testimonial Video" 
-                          id={VideoTestimonial.embedID} 
-                          className="w-full aspect-video border border-neutral-500 rounded-lg" 
+                        <iframe
+                          src={VideoTestimonial.embedURL}
+                          title="Testimonial Video"
+                          id={VideoTestimonial.embedID}
+                          className="w-full aspect-video border border-neutral-500 rounded-lg"
                           allowFullScreen
                         />
                       </div>
@@ -185,9 +199,9 @@ export default function Testimonials(props: TestimonialsProps) {
               {groupedVideos[location].length > 1 && (
                 <div className="lg:hidden container max-w-xl mx-auto grid grid-cols-3 gap-4">
                   {groupedVideos[location].map((VideoTestimonial, index) => (
-                    <button 
-                      key={index} 
-                      className={props.videobuttonclass} 
+                    <button
+                      key={index}
+                      className={props.videobuttonclass}
                       onClick={() => swiper?.slideTo(index)}
                     >
                       {VideoTestimonial.buttonLabel}
@@ -201,10 +215,10 @@ export default function Testimonials(props: TestimonialsProps) {
           {/* Google Reviews Logo */}
           <div className="md:container md:max-w-6xl">
             <a href={props.gmburl} target="_blank" rel="noopener noreferrer">
-              <img 
-                src="/img/google-reviews.svg" 
-                alt="Google Reviews" 
-                className="md:w-52 md:h-auto mx-auto mb-8" 
+              <img
+                src="/img/google-reviews.svg"
+                alt="Google Reviews"
+                className="md:w-52 md:h-auto mx-auto mb-8"
               />
             </a>
           </div>
@@ -214,7 +228,7 @@ export default function Testimonials(props: TestimonialsProps) {
             {groupedTestimonials[location] && groupedTestimonials[location].length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                 {groupedTestimonials[location].map((TextTestimonial, index) => (
-                  <TestimonialText 
+                  <TestimonialText
                     key={index}
                     testimonial={TextTestimonial.testimonial}
                     index={index}
@@ -222,7 +236,9 @@ export default function Testimonials(props: TestimonialsProps) {
                 ))}
               </div>
             ) : (
-              <p className="text-center text-gray-600 py-8">No testimonials available for this location yet.</p>
+              <p className="text-center text-gray-600 py-8">
+                No testimonials available for this location yet.
+              </p>
             )}
           </div>
         </div>
@@ -249,8 +265,12 @@ export default function Testimonials(props: TestimonialsProps) {
           animation: fadeIn 0.3s ease-in-out;
         }
         @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
       `}</style>
     </div>
