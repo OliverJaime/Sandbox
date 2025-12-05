@@ -77,7 +77,7 @@ export default function Testimonials(props: TestimonialsProps) {
   ).filter(Boolean);
 
   // 2. Sort with Troy first, then Rochester, then any others alphabetically
-  const preferredOrder = ['Troy', 'Rochester'];
+  const preferredOrder = ['Clarkston','Rochester','Troy'];
 
   const sortedLocations = uniqueLocations.sort((a, b) => {
     const ia = preferredOrder.indexOf(a);

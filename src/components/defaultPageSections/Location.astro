@@ -23,7 +23,10 @@ export interface Hours {
 }
 
 const props = Astro.props;
-const locationsList = props.locations || [];
+const locationsList = (props.locations || []).sort((a, b) => 
+  a.name.localeCompare(b.name)
+);
+
 ---
 
 <!-- Add Roboto Font -->

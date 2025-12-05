@@ -25,11 +25,25 @@
       "location": "Troy"
     },
     {
-      "embedURL": "https://player.vimeo.com/video/1069712559",
-      "embedID": "vim_player_4_rochester",
+      "embedURL": "https://player.vimeo.com/video/1121311769",
+      "embedID": "vim_player_3",
+      "coverimg": "/img/testimonial-cover-a.png",
+      "buttonLabel": "Bryan",
+      "location": "Clarkston"
+    },
+    {
+      "embedURL": "https://player.vimeo.com/video/1121311755",
+      "embedID": "vim_player_5",
+      "coverimg": "/img/testimonial-cover-c.png",
+      "buttonLabel": "Anonymous",
+      "location": "Clarkston"
+    },
+    {
+      "embedURL": "https://player.vimeo.com/video/1121311789",
+      "embedID": "vim_player_4",
       "coverimg": "/img/testimonial-cover-b.png",
       "buttonLabel": "Joe",
-      "location": "Rochester"
+      "location": "Clarkston"      
     }
   ],
   "textTestimonials": [
@@ -44,6 +58,18 @@
     {
       "testimonial": "I have been suffering with sciatica and some other issues and after the first 2 hour session I was able to walk and do everyday activities with much less pain. After my second session I was able to fly back to Florida comfortably, which is life changing, because I fly a lot for work. Even if you aren't sure, call and have a conversation. You won't be disappointed. Thank you to the staff. - Cara Culmone",
       "location": "Troy"
+    },
+    {
+      "testimonial": "Amazing results at the Clarkston location! The staff was incredibly knowledgeable and the robotic therapy worked wonders for my chronic back pain.",
+      "location": "Clarkston"
+    },
+     {
+      "testimonial": "Had some terrible back pain and my cousin recommended this place after they helped him with back pain.  After treatments I was back to 100%. The team is incredible over there!  This was my first experience with a robotic arm.- Jeffrey Atto",
+      "location": "Clarkston"
+    },
+    {
+      "testimonial": "I was having issues with my hip after a hard fall and gave this a try.  I had done chiropractors for this issue in the past.  I did 4 treatments and am feeling so much better! Thanks for the treatment.  I will definitely be back if I have future issues!- Sally Gobrogge",
+      "location": "Clarkston"
     },
     {
       "testimonial": "I have to admit, I was unsure at first...a robot...how is this going to help better than regular PT?!? Now having gone 3 times so far...O.M.G...this place is amazing!!!!!  I have had lower back pain, SI joint issues for years and have done PT several times.  I felt noticeable relief after my first session and I feel better each time.  I ran and played soccer with my kids for the first time ever!!!  Dr. Jack and Corryn are very personable and knowledgeable and the place is spotless!- Dough Ferner",

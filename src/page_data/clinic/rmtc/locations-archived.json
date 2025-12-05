@@ -1,0 +1,26 @@
+{
+  "locations": [
+    
+    {
+      "name": "Traverse City",
+      "photo": "/img/Location-Traverse.webp",
+      "street": "1414 Trade Centre Dr",
+      "suite": "Suite E",
+      "citystatezip": "Traverse City, MI 49696",
+      "entranceinfo": "Inside StrengthRx Gym",
+      "phone": "(248) 325-5169",
+      "hours": [
+        { "day": "Monday", "time": "5:30am - 7pm" },
+        { "day": "Tuesday", "time": "5:30am - 7pm" },
+        { "day": "Wednesday", "time": "5:30am - 7pm" },
+        { "day": "Thursday", "time": "5:30am - 7pm" },
+        { "day": "Friday", "time": "5:30am - 5pm" },
+        { "day": "Saturday", "time": "7am - 10am" },
+        { "day": "Sunday", "time": "Closed" }
+      ],
+      "website": "www.robotictherapymichigan.com",
+      "websiteurl": "https://robotictherapymichigan.com/strengthrxgym/?utm_source=google&utm_medium=cpc",
+      "gmapsembed": "!1m14!1m8!1m3!1d2835.2789586904228!2d-85.603348!3d44.713918!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x881e33f18ac05471%3A0xf13df6b4c3847062!2sStrengthRx%20Gym%20Traverse%20City!5e0!3m2!1sen!2sus!4v1764022771309!5m2!1sen!2sus"
+    }
+  ]
+}

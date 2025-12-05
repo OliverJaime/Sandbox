@@ -9,26 +9,39 @@
       "desc": "Lauren is passionate about helping patients improve their quality of life and continue pursuing joyful activities. Lauren is certified in advanced Integrative Dry Needling (CIDN), hawkgrips (IASTM), kinesiotaping, and cupping.",
       "alt": "Dr. Lauren Michon - PT, DPT, CIDN, RPT"
     },
-
     {
       "headshot": "/img/headshot-rosenburg.png",
       "name": "Mike Rosenburg",
       "cert": "PTA, RPT",
-      "desc": "As an NCAA athlete who faced injury challenges, Mike understands the frustration of chronic pain.  Over 8 years, he's tailored his approach ensuring patients lead a pain-free life without surgeries or medications.",
+      "desc": "As an NCAA athlete who faced injury challenges, Mike understands the frustration of chronic pain. Over 8 years, he's tailored his approach ensuring patients lead a pain-free life without surgeries or medications.",
       "alt": "Mike Rosenburg - PTA, RPT"
     },
     {
       "headshot": "/img/headshot-blankenship.png",
       "name": "Ben Blankenship",
       "cert": "CNMT, RPT",
-      "desc": "Ben, founder of RPT Clinic, once grappled with severe lower back pain.  From athlete with lumbar pain to discovering RPT's life-changing results, he's committed to providing others his breakthrough non-invastive therapy.",
+      "desc": "Ben, founder of RPT Clinic, once grappled with severe lower back pain. From athlete with lumbar pain to discovering RPT's life-changing results, he's committed to providing others his breakthrough non-invasive therapy.",
       "alt": "Ben Blankenship - CNMT, RPT"
     },
-     {
+    {
       "headshot": "/img/Jack.png",
       "name": "Dr. Jack Cygan",
       "cert": "BS, DC, RPT",
       "desc": "Jack earned his Bachelor of Science in Biology from the University of Illinois and his Doctorate of Physical Therapy from Rosalind Franklin University of Medicine. He is also trained in Integrative Dry Needling (IDN) and cupping.",
+      "alt": "Dr. Jack Cygan - BS, DC, RPT"
+    },
+    {
+      "headshot": "/img/Dr. Stephanie.jpg",
+      "name": "Dr. Stephanie",
+      "cert": "CPT, RPT",
+      "desc": "Stephanie earned her diploma from the National Personal Training Institute of Michigan in March 2011. Her lifelong involvement in dance and various sports laid the foundation for her dedication to self-care and personal growth.",
+      "alt": "Dr. Jack Cygan - BS, DC, RPT"
+    },
+       {
+      "headshot": "/img/Dr. Dayne.jpg",
+      "name": "Dr. Dayne",
+      "cert": "BS, DC, RPT",
+      "desc": "Dr. Dayne Rogers earned his Bachelor of Science in Nutrition and Doctorate of Chiropractic from Life University in Atlanta, Georgia, graduating in 1992. With 32 years of chiropractic experience, as well as upper & slower body adjustments.",
       "alt": "Dr. Jack Cygan - BS, DC, RPT"
     }
   ]
